@@ -1,0 +1,20 @@
+{
+  "name": "kota-shade/form-decorator",
+  "description": "Flexible form element view helper for ZF2",
+  "require": {
+    "php": ">=5.5",
+    "zendframework/zend-form": ">=2.4",
+    "zendframework/zend-servicemanager": ">=2.4",
+    "zendframework/zend-view": ">=2.4"
+  },
+  "repositories":[
+  ],
+  "autoload": {
+    "psr-4": {
+      "FormDecorator\\": "src/",
+    },
+    "classmap": [
+      "./Module.php"
+    ]
+  }
+}
