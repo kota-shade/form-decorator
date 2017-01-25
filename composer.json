@@ -11,7 +11,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "FormDecorator\\": "src/",
+      "FormDecorator\\": "src/"
     },
     "classmap": [
       "./Module.php"
