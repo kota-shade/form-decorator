@@ -11,7 +11,7 @@ $form = $this->get('formElement');
 echo $this->form()->openTag($form);
 $content = '';
 foreach ($form as $element) {
-    $content.= $this->formDecorator($element, $this->get('branch'));
+    $content.= $this->formBranchRender($element, $this->get('branch'));
 }
 echo $content;
 echo '<p>branch => ' . $this->get('branch');

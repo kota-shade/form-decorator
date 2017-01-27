@@ -5,7 +5,7 @@ use Zend\View\Helper\AbstractHelper as BaseHelper;
 use Zend\Form\Element as BaseElement;
 use Zend\View\HelperPluginManager;
 
-class FormElementDecorator extends BaseHelper
+class FormElementBranch extends BaseHelper
 {
     /**
      * @var array
@@ -33,24 +33,23 @@ class FormElementDecorator extends BaseHelper
 
     /**
      * @param BaseElement $formElement
+     * @param string $branch - ветка из которой извлекать хелперы
      * @param array $options
      * @return $this|string
      */
-    public function __invoke(BaseElement $formElement, $branch, array $options = [])
+    public function __invoke(BaseElement $formElement, $branch, $content = '', array $options = [])
     {
-        if (!$formElement) {
-            return $this; //FIXME
-        }
-
-        return $this->render($formElement, $branch, $options);
+        return $this->render($formElement, $branch, $content, $options);
     }
 
     /**
      * @param BaseElement $formElement
+     * @param string $branch - ветка из которой извлекать хелперы
+     * @param mixed $content
      * @param array $options
-     * @return null
+     * @return mixed
      */
-    public function render(BaseElement $formElement, $branch, array $options = [])
+    public function render(BaseElement $formElement, $branch, $content = '',  array $options = [])
     {
         if (($newBranch = $formElement->getOption('branch')) != null) {
             $realBranch = $newBranch;
@@ -58,20 +57,15 @@ class FormElementDecorator extends BaseHelper
             $realBranch = $branch;
         }
         $chain = $this->getHelperChain($formElement, $realBranch);
+        $helperPM = $this->helperPM;
 
-        $content = '';
-        /** @var string $viewScript */
-        foreach ($chain as $viewScript) {
-            $view = $this->getView();
-            $content = $view->render(
-                $viewScript,
-                [
-                    'formElement' => $formElement,
-                    'branch' => $branch,
-                    'content' => $content,
-                    'options' => $options
-                ]
-            );
+        /** @var array $helperConfig */
+        foreach ($chain as $helperConfig) {
+            $helperName = $helperConfig['name'];
+            $options = ($helperConfig['options']) ? $helperConfig['options'] : [];
+            /** @var \Callable $helper */
+            $helper = $helperPM->get($helperName);
+            $content = $helper($formElement, $branch, $content, $options);
         }
 
         return $content;

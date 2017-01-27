@@ -1,0 +1,13 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 28.01.17
+ * Time: 0:45
+ */
+$element = $this->get('formElement');
+?>
+<tr>
+    <td><?php echo $this->formLabel($element); ?></td>
+    <td><?php echo $this->formBranchRender($element, $this->get('branch')); ?></td>
+</tr>

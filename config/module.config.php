@@ -5,14 +5,16 @@ use FormDecorator\View\Helper as HelperNS;
 use Zend\Form\Element as ElementNS;
 use Zend\Form\View\Helper as ZendElementHelperNS;
 use Zend\View\Helper as ViewHelperNS;
+use Zend\Form as ZFormNS;
 
 return [
     'view_helpers' => [
         'aliases' => [
-            'formDecorator' => HelperNS\FormElementDecorator::class,
+            'formBranchRender' => HelperNS\FormElementBranch::class,
+            'formElementView' => HelperNS\FormElementView::class
         ],
         'factories' => [
-            HelperNS\FormElementDecorator::class => function ($serviceManager) {
+            HelperNS\FormElementBranch::class => function ($serviceManager) {
                 $configKey = 'FormElementDecorators';
                 $parentServiceLocator = $serviceManager->getServiceLocator();
                 $config = $parentServiceLocator->get('config');
@@ -20,7 +22,17 @@ return [
                 if (array_key_exists($configKey, $config) == false) {
                     throw new \InvalidArgumentException('missing config section '. $configKey);
                 }
-                return new HelperNS\FormElementDecorator($serviceManager, $config[$configKey]);
+                return new HelperNS\FormElementBranch($serviceManager, $config[$configKey]);
+            },
+            HelperNS\FormElementView::class => function ($serviceManager) {
+                $configKey = 'FormElementDecorators';
+                $parentServiceLocator = $serviceManager->getServiceLocator();
+                $config = $parentServiceLocator->get('config');
+
+                if (array_key_exists($configKey, $config) == false) {
+                    throw new \InvalidArgumentException('missing config section '. $configKey);
+                }
+                return new HelperNS\FormElementView($serviceManager, $config[$configKey]);
             },
         ],
         'shared' => [
@@ -29,36 +41,41 @@ return [
     'FormElementDecorators' => [
         'decoratorBranch' => [
             'default' => [
-                \Zend\Form\Form::class => [
-                    '/FormElementDecorators/default/form',
+                ZFormNS\Form::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/form'] ],
                 ],
-                \Zend\Form\Fieldset::class => [
-                    '/FormElementDecorators/default/fieldset',
+                ZFormNS\Fieldset::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/fieldset-body']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/table']],
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/fieldset'] ],
                 ],
                 ElementNS\Text::class => [
-                    '/FormElementDecorators/default/text',
+                    [ 'name' => ZendElementHelperNS\FormInput::class ],
                 ],
                 ElementNS\Select::class => [
-                    '/FormElementDecorators/default/select',
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/select'] ],
                 ],
                 ElementNS\Radio::class => [
-                    '/FormElementDecorators/default/radio',
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/radio'] ],
                 ]
             ],
             'minimal' => [
-                \Zend\Form\Form::class => [
-                    '/FormElementDecorators/minimal/form',
+                ZFormNS\Form::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/minimal/form'] ],
                 ],
                 ElementNS\Text::class => [
-                    '/FormElementDecorators/minimal/text',
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/minimal/text'] ],
                 ],
                 ElementNS\Select::class => [
-                    '/FormElementDecorators/minimal/select',
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/minimal/select'] ],
                 ],
                 ElementNS\Radio::class => [
-                    '/FormElementDecorators/minimal/radio',
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/minimal/radio'] ],
                 ]
-            ]
+            ],
+            'table-row' => [
+
+            ],
         ]
     ],
     'view_manager' => array(
