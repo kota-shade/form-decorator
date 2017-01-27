@@ -73,9 +73,6 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/minimal/radio'] ],
                 ]
             ],
-            'table-row' => [
-
-            ],
         ]
     ],
     'view_manager' => array(
