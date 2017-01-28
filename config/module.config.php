@@ -90,7 +90,8 @@ return [
                             'template' => '/FormElementDecorators/default/list',
                             'branch' => 'table_tr'
                     ]],
-                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-fieldset']],
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-fieldset']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-collection']],
                     //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/collection'] ],
                 ],
                 ZFormNS\Fieldset::class => [
