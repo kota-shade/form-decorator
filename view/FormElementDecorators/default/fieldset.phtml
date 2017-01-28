@@ -9,10 +9,10 @@ use \Zend\Form\FieldsetInterface;
 
 /** @var \Zend\Form\Fieldset $fieldset */
 $fieldset = $this->get('formElement');
-echo '<fieldset><table><label>'.$fieldset->getLabel().'</label>';
-/** @var \Zend\Form\Element $element */
-foreach ($fieldset as $element) {
-    echo '<tr><td>'.$this->formLabel($element).'</td><td>'.$this->formBranchRender($element, $this->get('branch')).'</td></tr>';
+echo "<fieldset>\n";
+if (($label = $fieldset->getLabel()) != null) {
+    echo '<label>'.$label."</label>\n";
 }
-echo '</table></fieldset>';
+echo $this->get('content');
+echo "</fieldset>\n";
 

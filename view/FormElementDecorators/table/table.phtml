@@ -1,7 +1,8 @@
-<fieldset>
-    <table>
-        <?php
-        echo $this->get('content');
-        ?>
-    </table>
-</fieldset>
+<table
+    border="1"
+    id = "tbl-<?php echo $this->get('formElement')->getName(); ?>"
+    class = "tbl-form-element"
+    >
+    <?php echo $this->get('content'); ?>
+</table>
+

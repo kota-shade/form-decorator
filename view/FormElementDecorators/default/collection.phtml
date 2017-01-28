@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 28.01.17
+ * Time: 15:50
+ */
+use \Zend\Form\Element\Collection;
+
+/** @var Collection $collection */
+$collection = $this->get('formElement');
+if ($collection->shouldCreateTemplate()) {
+    if ($template = $collection->getTemplateElement()) {
+        $templateMarkup = $this->formBranchRender($template, $this->get('branch'));
+//        if ($template->getLabel()) {
+//            $templateMarkup = $this->formLabel($template) . $templateMarkup;
+//        }
+//        $templateMarkup = $this->escapeHtml($templateMarkup);
+    }
+}
+/** @var \Zend\Form\Element $element */
+foreach ($collection as $element) {
+    if ($element->getLabel()) {
+        echo  $this->formLabel($element);
+    }
+    echo $this->formBranchRender($element, $this->get('branch'));
+}

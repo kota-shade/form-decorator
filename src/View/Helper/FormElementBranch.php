@@ -62,7 +62,7 @@ class FormElementBranch extends BaseHelper
         /** @var array $helperConfig */
         foreach ($chain as $helperConfig) {
             $helperName = $helperConfig['name'];
-            $options = ($helperConfig['options']) ? $helperConfig['options'] : [];
+            $options = (array_key_exists('options', $helperConfig)) ? $helperConfig['options'] : [];
             /** @var \Callable $helper */
             $helper = $helperPM->get($helperName);
             $content = $helper($formElement, $branch, $content, $options);

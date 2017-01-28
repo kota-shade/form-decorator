@@ -11,7 +11,10 @@ use \Zend\Form\FieldsetInterface;
 $fieldset = $this->get('formElement');
 /** @var \Zend\Form\Element $element */
 foreach ($fieldset as $element) {
-    echo $this->formBranchRender($element, $this->get('branch'));
+    if ($element->getLabel()) {
+        echo $this->formLabel($element);
+    }
+    echo $this->formBranchRender($element, $this->get('branch')) . "\n";
 }
 
 
