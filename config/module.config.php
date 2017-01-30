@@ -34,6 +34,31 @@ return [
                 }
                 return new HelperNS\FormElementView($serviceManager, $config[$configKey]);
             },
+
+            HelperNS\JqGrid\Params::class => function ($serviceManager) {
+                $configKey = 'FormElementDecorators';
+                $parentServiceLocator = $serviceManager->getServiceLocator();
+                $config = $parentServiceLocator->get('config');
+
+                if (array_key_exists($configKey, $config) == false) {
+                    throw new \InvalidArgumentException('missing config section '. $configKey);
+                }
+                return new HelperNS\JqGrid\Params($serviceManager, $config[$configKey]);
+            },
+            HelperNS\JqGrid\ColModel::class => function ($serviceManager) {
+                $configKey = 'FormElementDecorators';
+                $parentServiceLocator = $serviceManager->getServiceLocator();
+                $config = $parentServiceLocator->get('config');
+
+                if (array_key_exists($configKey, $config) == false) {
+                    throw new \InvalidArgumentException('missing config section '. $configKey);
+                }
+                return new HelperNS\JqGrid\ColModel($serviceManager, $config[$configKey]);
+            },
+
+        ],
+        'invokables' => [
+            HelperNS\JqGrid\ColModel\Text::class => HelperNS\JqGrid\ColModel\Text::class,
         ],
         'shared' => [
         ]
@@ -136,7 +161,31 @@ return [
                         'style' => 'border:1px solid #000;',
                     ]],
                 ]
-            ]
+            ],
+            'jqGrid' => [
+                ZFormNS\Form::class => [
+                    [ 'name' => HelperNS\JqGrid\Params::class ],
+                    [ 'name' => HelperNS\JqGrid\ColModel::class ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid-function'] ],
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid-function'] ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid'] ],
+                ],
+                ZFormNS\Fieldset::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/list-col-model'] ],
+                ],
+                ElementNS\Text::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/col-model-text'] ],
+                ],
+                ElementNS\Select::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/col-model-text'] ],
+                ],
+                ElementNS\Radio::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/col-model-text'] ],
+                ],
+            ],
         ]
     ],
     'view_manager' => array(
