@@ -16,10 +16,15 @@ $gridName = 'Grid'.$formElement->getName();
 $gridBody = Json::encode($content, false, [ 'enableJsonExprFinder'=>true, 'prettyPrint'=>true ]);
 
 ?>
-function(gridSelector, pagerSelector) {
-        var grid = $(gridSelector).jqGrid(<?php
-        echo $gridBody;
-        ?>);
 
-        return grid;
-    };
+
+var <?php echo $gridName; ?> = function(gridSelector, pagerSelector) {
+    var grid = $(gridSelector).jqGrid(<?php
+    echo $gridBody;
+    ?>);
+
+    return grid;
+};
+
+var gridObj = <?php echo $gridName; ?>(gridSelector, pagerSelector);
+

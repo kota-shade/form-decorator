@@ -164,14 +164,31 @@ return [
             ],
             'jqGrid' => [
                 ZFormNS\Form::class => [
-                    [ 'name' => HelperNS\JqGrid\Params::class ],
                     [ 'name' => HelperNS\JqGrid\ColModel::class ],
+                    [ 'name' => HelperNS\JqGrid\Params::class ],
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid-function'] ],
-                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid-function'] ],
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid'] ],
                 ],
+                ElementNS\Text::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                ],
+                ElementNS\Select::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                ],
+                ElementNS\Radio::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                ],
+            ],
+            'jqGrid1' => [
+                ZFormNS\Form::class => [
+                    [ 'name' => HelperNS\JqGrid\Params::class ],
+                    [ 'name' => HelperNS\JqGrid\ColModel::class ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid1/grid-function'] ],
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid-function'] ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid1/grid'] ],
+                ],
                 ZFormNS\Fieldset::class => [
-                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/list-col-model'] ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid1/list-col-model'] ],
                 ],
                 ElementNS\Text::class => [
                     [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],

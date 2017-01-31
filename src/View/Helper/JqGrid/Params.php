@@ -57,7 +57,7 @@ class Params extends BaseHelper
      * @param array $options
      * @return mixed
      */
-    public function render(BaseElement $formElement, $branch, $content = '', array $options = [])
+    public function render(BaseElement $formElement, $branch, $content = array(), array $options = [])
     {
         $options = $formElement->getOption('jqGrid');
         if (($action = $formElement->getAttribute('action')) != null) {
@@ -66,6 +66,7 @@ class Params extends BaseHelper
         if ($options['pager'] == true) {
             $options['pager'] = new \Zend\Json\Expr('pagerSelector');
         }
-        return $options;
+        $ret = array_merge($options, $content);
+        return $ret;
     }
 }
