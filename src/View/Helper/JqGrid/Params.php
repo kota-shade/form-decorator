@@ -63,9 +63,6 @@ class Params extends BaseHelper
         if (($action = $formElement->getAttribute('action')) != null) {
             $options['url'] = $action;
         }
-        if ($options['pager'] == true) {
-            $options['pager'] = new \Zend\Json\Expr('pagerSelector');
-        }
         $ret = array_merge($options, $content);
         return $ret;
     }

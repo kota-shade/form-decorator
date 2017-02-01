@@ -8,7 +8,7 @@
 /** @var \Zend\Form\Form $form */
 $form = $this->get('formElement');
 $gridName = 'Grid'.$form->getName();
-$opts = $formElement->getOption('jqGrid');
+$opts = $form->getOption('jqGrid');
 if (array_key_exists('pager', $opts) && $opts['pager'] == true) {
     $pagerId = 'GridPager-'.$gridName;
 } else {
@@ -24,11 +24,19 @@ $(document).ready(function() {
     var gridPagerId = '<?php echo $pagerId; ?>';
     if (gridPagerId != undefined) {
         jQuery('#<?php echo $gridName; ?>').after("<div id=\'" + gridPagerId + "\'></div>");
-        pagerSelector = '#'.gridPagerId;
+        pagerSelector = '#'+gridPagerId;
     }
 
     var gridFunction = <?php echo $this->get('content'); ?>;
 
     var gridObj = gridFunction(gridSelector, pagerSelector);
+
+    <?php
+     $gridMethods = $form->getOption('jqGridMethods');
+     foreach ($gridMethods as $methodObj) {
+        echo 'gridObj.jqGrid('. $methodObj . ");\n";
+     }
+    ?>
+
 });
 </script>
