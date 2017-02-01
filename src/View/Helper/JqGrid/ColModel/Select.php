@@ -5,11 +5,6 @@ use Zend\View\Helper\AbstractHelper as BaseHelper;
 use Zend\View\HelperPluginManager;
 use Zend\Form\Element\Select as BaseElement;
 
-class StrTest extends \Zend\Json\Expr {
-    public function __toString() {
-        return sprintf("'%s':'%s'\n", 2, 'aa');
-    }
-};
 
 class Select extends BaseHelper
 {
