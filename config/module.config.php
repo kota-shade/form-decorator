@@ -59,6 +59,7 @@ return [
         ],
         'invokables' => [
             HelperNS\JqGrid\ColModel\Text::class => HelperNS\JqGrid\ColModel\Text::class,
+            HelperNS\JqGrid\ColModel\Select::class => HelperNS\JqGrid\ColModel\Select::class,
         ],
         'shared' => [
         ]
@@ -173,7 +174,7 @@ return [
                     [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
                 ],
                 ElementNS\Select::class => [
-                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                    [ 'name' => HelperNS\JqGrid\ColModel\Select::class ],
                 ],
                 ElementNS\Radio::class => [
                     [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
