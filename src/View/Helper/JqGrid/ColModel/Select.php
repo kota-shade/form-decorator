@@ -8,7 +8,8 @@ use Zend\Form\Element\Select as BaseElement;
 
 class Select extends BaseHelper
 {
-    private $emptyPair = ['__empty__' => ''];
+    //private $emptyPair = ['__empty__' => ''];
+    private $emptyPair = ['' => ''];
     /**
      * @param BaseElement $formElement
      * @param string $branch
