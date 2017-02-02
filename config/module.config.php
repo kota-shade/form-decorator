@@ -60,6 +60,7 @@ return [
         'invokables' => [
             HelperNS\JqGrid\ColModel\Text::class => HelperNS\JqGrid\ColModel\Text::class,
             HelperNS\JqGrid\ColModel\Select::class => HelperNS\JqGrid\ColModel\Select::class,
+            HelperNS\JqGrid\ColModel\Hidden::class => HelperNS\JqGrid\ColModel\Hidden::class,
         ],
         'shared' => [
         ]
@@ -178,6 +179,9 @@ return [
                 ],
                 ElementNS\Radio::class => [
                     [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
+                ],
+                ElementNS\Hidden::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Hidden::class ],
                 ],
             ],
             'jqGrid1' => [

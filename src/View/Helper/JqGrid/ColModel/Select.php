@@ -55,6 +55,10 @@ class Select extends BaseHelper
                 'value' => new SelectOptions($valueOptions)
             ],
         ];
+
+        if (($opt = $formElement->getOption('jqGrid')) != null) {
+            $res = array_replace_recursive($res, $opt);
+        }
         return $res;
     }
 
