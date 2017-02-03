@@ -61,6 +61,7 @@ return [
             HelperNS\JqGrid\ColModel\Text::class => HelperNS\JqGrid\ColModel\Text::class,
             HelperNS\JqGrid\ColModel\Select::class => HelperNS\JqGrid\ColModel\Select::class,
             HelperNS\JqGrid\ColModel\Hidden::class => HelperNS\JqGrid\ColModel\Hidden::class,
+            HelperNS\JqGrid\ColModel\Checkbox::class => HelperNS\JqGrid\ColModel\Checkbox::class,
         ],
         'shared' => [
         ]
@@ -182,6 +183,9 @@ return [
                 ],
                 ElementNS\Hidden::class => [
                     [ 'name' => HelperNS\JqGrid\ColModel\Hidden::class ],
+                ],
+                ElementNS\Checkbox::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Checkbox::class ],
                 ],
             ],
             'jqGrid1' => [
