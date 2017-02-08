@@ -37,7 +37,7 @@ class FormElementBranch extends BaseHelper
      * @param array $options
      * @return $this|string
      */
-    public function __invoke(BaseElement $formElement, $branch, $content = '', array $options = [])
+    public function __invoke(BaseElement $formElement, $branch, $content = null, array $options = [])
     {
         return $this->render($formElement, $branch, $content, $options);
     }
@@ -49,7 +49,7 @@ class FormElementBranch extends BaseHelper
      * @param array $options
      * @return mixed
      */
-    public function render(BaseElement $formElement, $branch, $content = '',  array $options = [])
+    public function render(BaseElement $formElement, $branch, $content = null,  array $options = [])
     {
         if (($newBranch = $formElement->getOption('branch')) != null) {
             $realBranch = $newBranch;

@@ -45,7 +45,7 @@ class ColModel extends BaseHelper
      * @param array $options
      * @return $this|string
      */
-    public function __invoke(BaseElement $formElement, $branch, $content='', array $options = [])
+    public function __invoke(BaseElement $formElement, $branch, $content=null, array $options = [])
     {
         return $this->render($formElement, $branch, $content, $options);
     }
@@ -57,7 +57,7 @@ class ColModel extends BaseHelper
      * @param array $options
      * @return mixed
      */
-    public function render(\Zend\Form\Form $formElement, $branch, $content = '', array $options = [])
+    public function render(\Zend\Form\Form $formElement, $branch, $content = null, array $options = [])
     {
         //$chain = $this->getHelperChain($formElement, $realBranch);
         $helperPM = $this->helperPM;

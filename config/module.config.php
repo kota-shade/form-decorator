@@ -14,47 +14,65 @@ return [
             'formElementView' => HelperNS\FormElementView::class
         ],
         'factories' => [
-            HelperNS\FormElementBranch::class => function ($serviceManager) {
-                $configKey = 'FormElementDecorators';
-                $parentServiceLocator = $serviceManager->getServiceLocator();
-                $config = $parentServiceLocator->get('config');
+            HelperNS\FormElementBranch::class => HelperNS\FormElementBranchFactory::class,
+//
+//                function ($serviceManager) {
+//                $configKey = 'FormElementDecorators';
+//                if ($serviceManager instanceof \Zend\ServiceManager\AbstractPluginManager) {
+//                    $parentServiceLocator = $serviceManager->getServiceLocator();
+//                } else {
+//                    $parentServiceLocator = $serviceManager;
+//                }
+//                $config = $parentServiceLocator->get('config');
+//
+//                try {
+//
+//                if (array_key_exists($configKey, $config) == false) {
+//                    throw new \InvalidArgumentException('missing config section '. $configKey);
+//                }
+//
+//                    $ret = new HelperNS\FormElementBranch($serviceManager, $config[$configKey]);
+//                } catch(\Exception $e) {
+//                    print_r($e->getMessages());
+//                    exit;
+//                }
+//                return $ret;
+//
+//            },
+            HelperNS\FormElementView::class => HelperNS\FormElementViewFactory::class,
+//                function ($serviceManager) {
+//                $configKey = 'FormElementDecorators';
+//                $parentServiceLocator = $serviceManager->getServiceLocator();
+//                $config = $parentServiceLocator->get('config');
+//
+//                if (array_key_exists($configKey, $config) == false) {
+//                    throw new \InvalidArgumentException('missing config section '. $configKey);
+//                }
+//                return new HelperNS\FormElementView($serviceManager, $config[$configKey]);
+//            },
 
-                if (array_key_exists($configKey, $config) == false) {
-                    throw new \InvalidArgumentException('missing config section '. $configKey);
-                }
-                return new HelperNS\FormElementBranch($serviceManager, $config[$configKey]);
-            },
-            HelperNS\FormElementView::class => function ($serviceManager) {
-                $configKey = 'FormElementDecorators';
-                $parentServiceLocator = $serviceManager->getServiceLocator();
-                $config = $parentServiceLocator->get('config');
-
-                if (array_key_exists($configKey, $config) == false) {
-                    throw new \InvalidArgumentException('missing config section '. $configKey);
-                }
-                return new HelperNS\FormElementView($serviceManager, $config[$configKey]);
-            },
-
-            HelperNS\JqGrid\Params::class => function ($serviceManager) {
-                $configKey = 'FormElementDecorators';
-                $parentServiceLocator = $serviceManager->getServiceLocator();
-                $config = $parentServiceLocator->get('config');
-
-                if (array_key_exists($configKey, $config) == false) {
-                    throw new \InvalidArgumentException('missing config section '. $configKey);
-                }
-                return new HelperNS\JqGrid\Params($serviceManager, $config[$configKey]);
-            },
-            HelperNS\JqGrid\ColModel::class => function ($serviceManager) {
-                $configKey = 'FormElementDecorators';
-                $parentServiceLocator = $serviceManager->getServiceLocator();
-                $config = $parentServiceLocator->get('config');
-
-                if (array_key_exists($configKey, $config) == false) {
-                    throw new \InvalidArgumentException('missing config section '. $configKey);
-                }
-                return new HelperNS\JqGrid\ColModel($serviceManager, $config[$configKey]);
-            },
+            HelperNS\JqGrid\Params::class => HelperNS\JqGrid\ParamsFactory::class,
+//                function ($serviceManager) {
+//                $configKey = 'FormElementDecorators';
+//                $parentServiceLocator = $serviceManager->getServiceLocator();
+//                $config = $parentServiceLocator->get('config');
+//
+//                if (array_key_exists($configKey, $config) == false) {
+//                    throw new \InvalidArgumentException('missing config section '. $configKey);
+//                }
+//                return new HelperNS\JqGrid\Params($serviceManager, $config[$configKey]);
+//            },
+            HelperNS\JqGrid\ColModel::class => HelperNS\JqGrid\ColModelFactory::class
+//                function ($serviceManager) {
+//                $configKey = 'FormElementDecorators';
+//                $parentServiceLocator = $serviceManager->getServiceLocator();
+//                $config = $parentServiceLocator->get('config');
+//
+//                if (array_key_exists($configKey, $config) == false) {
+//                    throw new \InvalidArgumentException('missing config section '. $configKey);
+//                }
+//                return new HelperNS\JqGrid\ColModel($serviceManager, $config[$configKey]);
+//            },
 
         ],
         'invokables' => [
