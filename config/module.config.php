@@ -109,7 +109,13 @@ return [
                 ],
                 ElementNS\Radio::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/radio'] ],
-                ]
+                ],
+                ElementNS\Hidden::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/hidden'] ],
+                ],
+                ElementNS\Password::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/password'] ],
+                ],
             ],
             'minimal' => [
                 ZFormNS\Form::class => [
@@ -151,6 +157,12 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row'] ],
                 ],
                 ElementNS\Radio::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row'] ],
+                ],
+                ElementNS\Hidden::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-hidden'] ],
+                ],
+                ElementNS\Password::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row'] ],
                 ]
             ],
