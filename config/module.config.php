@@ -63,6 +63,9 @@ return [
                 ElementNS\Button::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button'] ],
                 ],
+                ElementNS\Password::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/password'] ],
+                ],
             ],
             'minimal' => [
                 ZFormNS\Form::class => [
@@ -104,6 +107,9 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row'] ],
                 ],
                 ElementNS\Radio::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row'] ],
+                ],
+                ElementNS\Password::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row'] ],
                 ],
                 ElementNS\Hidden::class => [
