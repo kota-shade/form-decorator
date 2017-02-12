@@ -15,65 +15,9 @@ return [
         ],
         'factories' => [
             HelperNS\FormElementBranch::class => HelperNS\FormElementBranchFactory::class,
-//
-//                function ($serviceManager) {
-//                $configKey = 'FormElementDecorators';
-//                if ($serviceManager instanceof \Zend\ServiceManager\AbstractPluginManager) {
-//                    $parentServiceLocator = $serviceManager->getServiceLocator();
-//                } else {
-//                    $parentServiceLocator = $serviceManager;
-//                }
-//                $config = $parentServiceLocator->get('config');
-//
-//                try {
-//
-//                if (array_key_exists($configKey, $config) == false) {
-//                    throw new \InvalidArgumentException('missing config section '. $configKey);
-//                }
-//
-//                    $ret = new HelperNS\FormElementBranch($serviceManager, $config[$configKey]);
-//                } catch(\Exception $e) {
-//                    print_r($e->getMessages());
-//                    exit;
-//                }
-//                return $ret;
-//
-//            },
             HelperNS\FormElementView::class => HelperNS\FormElementViewFactory::class,
-//                function ($serviceManager) {
-//                $configKey = 'FormElementDecorators';
-//                $parentServiceLocator = $serviceManager->getServiceLocator();
-//                $config = $parentServiceLocator->get('config');
-//
-//                if (array_key_exists($configKey, $config) == false) {
-//                    throw new \InvalidArgumentException('missing config section '. $configKey);
-//                }
-//                return new HelperNS\FormElementView($serviceManager, $config[$configKey]);
-//            },
-
             HelperNS\JqGrid\Params::class => HelperNS\JqGrid\ParamsFactory::class,
-//                function ($serviceManager) {
-//                $configKey = 'FormElementDecorators';
-//                $parentServiceLocator = $serviceManager->getServiceLocator();
-//                $config = $parentServiceLocator->get('config');
-//
-//                if (array_key_exists($configKey, $config) == false) {
-//                    throw new \InvalidArgumentException('missing config section '. $configKey);
-//                }
-//                return new HelperNS\JqGrid\Params($serviceManager, $config[$configKey]);
-//            },
             HelperNS\JqGrid\ColModel::class => HelperNS\JqGrid\ColModelFactory::class
-//                function ($serviceManager) {
-//                $configKey = 'FormElementDecorators';
-//                $parentServiceLocator = $serviceManager->getServiceLocator();
-//                $config = $parentServiceLocator->get('config');
-//
-//                if (array_key_exists($configKey, $config) == false) {
-//                    throw new \InvalidArgumentException('missing config section '. $configKey);
-//                }
-//                return new HelperNS\JqGrid\ColModel($serviceManager, $config[$configKey]);
-//            },
-
         ],
         'invokables' => [
             HelperNS\JqGrid\ColModel\Text::class => HelperNS\JqGrid\ColModel\Text::class,
@@ -109,7 +53,16 @@ return [
                 ],
                 ElementNS\Radio::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/radio'] ],
-                ]
+                ],
+                ElementNS\Hidden::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/hidden'] ],
+                ],
+                ElementNS\Submit::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/submit'] ],
+                ],
+                ElementNS\Button::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button'] ],
+                ],
             ],
             'minimal' => [
                 ZFormNS\Form::class => [
@@ -123,7 +76,7 @@ return [
                 ],
                 ElementNS\Radio::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/minimal/radio'] ],
-                ]
+                ],
             ],
             'table' => [
                 ZFormNS\Form::class => [
@@ -152,7 +105,18 @@ return [
                 ],
                 ElementNS\Radio::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row'] ],
-                ]
+                ],
+                ElementNS\Hidden::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-hidden'] ],
+                ],
+                ElementNS\Submit::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/submit']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-colspan'] ],
+                ],
+                ElementNS\Button::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-colspan'] ],
+                ],
             ],
             'table_tr' => [
                 ZFormNS\Fieldset::class => [
@@ -180,6 +144,13 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [
                         'template' => '/FormElementDecorators/table/tag', 'tag' => 'td',
                         'style' => 'border:1px solid #000;',
+                    ]],
+                ],
+                ElementNS\Hidden::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/hidden'] ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
+                        'template' => '/FormElementDecorators/table/tag', 'tag' => 'td',
+                        'style' => 'display:none; border:1px solid #000;',
                     ]],
                 ]
             ],

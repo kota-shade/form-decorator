@@ -1,7 +1,8 @@
 <?php
+/** @var \Zend\Form\Element $element */
 $element = $this->get('formElement');
 ?>
 <tr>
-    <td class="txt" style="border: 1px solid #808080; margin:1px;"><?php echo $this->formLabel($element); ?></td>
+    <td class="txt" style="border: 1px solid #808080; margin:1px;"><?php echo ($element->getLabel()) ? $this->formLabel($element) : ''; ?></td>
     <td class="value" style="border: 1px solid #808080; margin:1px;"><?php echo $this->formBranchRender($element, 'default'); ?></td>
 </tr>
