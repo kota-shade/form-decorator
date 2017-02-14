@@ -67,6 +67,27 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/password'] ],
                 ],
             ],
+            'bootstrap' => [
+                ZFormNS\Form::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list'] ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/form'] ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/form-wrap'] ],
+                ],
+                ElementNS\Collection::class => [
+                    ['name' => HelperNS\FormElementView::class, 'options' => [
+                            'template' => '/FormElementDecorators/default/list',
+                            'branch' => 'bootstrap_row'
+                    ]],
+                ],
+                ZFormNS\Fieldset::class => [],
+                ElementNS\Text::class => [],
+                ElementNS\Select::class => [],
+                ElementNS\Radio::class => [],
+                ElementNS\Password::class => [],
+                ElementNS\Hidden::class => [],
+                ElementNS\Submit::class => [],
+                ElementNS\Button::class => [],
+            ],
             'minimal' => [
                 ZFormNS\Form::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/minimal/form'] ],
