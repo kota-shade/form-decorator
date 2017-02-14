@@ -10,19 +10,27 @@ use \Zend\Form\FieldsetInterface;
 $form = $this->get('formElement');
 $content = $this->get('content');
 $baseFieldset = $form->getBaseFieldset();
-$label = $form->getLabel();
+$label = $baseFieldset->getLabel();
 $errorMessage = $baseFieldset->getAttribute('error-message');
+
+$classAtt = 'form-horizontal ' . $form->getAttribute('class');
+$form->setAttribute('class', $classAtt);
+echo $this->form()->openTag($form);
 ?>
-<div class="panel panel-default form-panel">
-    <?php if ($label): ?>
-    <div class="panel-heading">
-        <?php echo $label; ?>
-    </div>
-    <?php endif; ?>
+<div class="panel panel-default wrap-form">
+    <?php
+    if ($label) {
+        echo "<div class='panel-heading'>" . $this->formLabel($baseFieldset) . "</div>";
+    }
+    ?>
     <div class="panel-body">
-        <?php if($errorMessage): ?>
-        <div class="text-danger form-panel-error"><?php echo $errorMessage; ?></div>
-        <?php endif; ?>
-        <?php echo $content; ?>
+
+        <div class="form-group">
+            <?php if($errorMessage): ?>
+            <div class="text-danger form-panel-error"><?php echo $errorMessage; ?></div>
+            <?php endif; ?>
+            <?php echo $content; ?>
+        </div>
     </div>
-</div>
+<?php
+echo $this->form()->closeTag();
