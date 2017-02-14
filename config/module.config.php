@@ -79,14 +79,33 @@ return [
                             'branch' => 'bootstrap_row'
                     ]],
                 ],
-                ZFormNS\Fieldset::class => [],
-                ElementNS\Text::class => [],
-                ElementNS\Select::class => [],
-                ElementNS\Radio::class => [],
-                ElementNS\Password::class => [],
-                ElementNS\Hidden::class => [],
-                ElementNS\Submit::class => [],
-                ElementNS\Button::class => [],
+                ZFormNS\Fieldset::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/panel-fieldset']],
+                ],
+                ElementNS\Text::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row'] ],
+                ],
+                ElementNS\Select::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row'] ],
+                ],
+                ElementNS\Radio::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row'] ],
+                ],
+                ElementNS\Password::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row'] ],
+                ],
+                ElementNS\Hidden::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row-hidden'] ],
+                ],
+                ElementNS\Submit::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/submit']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row-colspan'] ],
+                ],
+                ElementNS\Button::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row-colspan'] ],
+                ],
             ],
             'minimal' => [
                 ZFormNS\Form::class => [

@@ -6,19 +6,17 @@
  * Time: 23:38
  */
 use \Zend\Form\FieldsetInterface;
-/** @var \Zend\Form\Form $form */
-$form = $this->get('formElement');
+
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
 $content = $this->get('content');
-$baseFieldset = $form->getBaseFieldset();
-$label = $form->getLabel();
-$errorMessage = $baseFieldset->getAttribute('error-message');
+$label = $element->getLabel();
+$errorMessage = $element->getAttribute('error-message');
 ?>
-<div class="panel panel-default form-panel">
-    <?php if ($label): ?>
+<div class="panel panel-default">
     <div class="panel-heading">
         <?php echo $label; ?>
     </div>
-    <?php endif; ?>
     <div class="panel-body">
         <?php if($errorMessage): ?>
         <div class="text-danger form-panel-error"><?php echo $errorMessage; ?></div>

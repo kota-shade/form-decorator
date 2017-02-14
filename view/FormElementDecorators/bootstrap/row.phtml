@@ -1,0 +1,11 @@
+<?php
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+$markup = $this->formBranchRender($element, 'default');
+$type = $element->getAttribute('type');
+?>
+<div class="panel-body wrap-element-row wrap-element-row-<?php echo $type; ?>">
+    <div class="col-sm-4 wrap-element-label"><?php echo $label; ?></div>
+    <div class="col-sm-8 wrap-element-body"><?php echo $markup; ?></div>
+</div>

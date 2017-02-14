@@ -1,0 +1,9 @@
+<?php
+$element = $this->get('formElement');
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+$markup = $this->formBranchRender($element, 'default');
+?>
+<div class="panel-body collapse">
+    <div class="col-sm-4 wrap-element-label"><?php echo $label; ?></div>
+    <div class="col-sm-8 wrap-element-body"><?php echo $markup; ?></div>
+</div>
