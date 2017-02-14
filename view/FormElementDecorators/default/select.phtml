@@ -21,6 +21,10 @@ if ($mode == 'view') {
     foreach ($valueOptions as $k => &$v) {
         if (is_array($v)) {
             //TODO есть такой расширенный формат опций
+            if ($v['value'] == $key) {
+                $value = $v['label'];
+                break;
+            }
         } else {
             if ($k == $key) {
                 $value = $v;
