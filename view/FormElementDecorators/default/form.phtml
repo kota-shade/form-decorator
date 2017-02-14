@@ -10,9 +10,6 @@ use \Zend\Form\FieldsetInterface;
 $form = $this->get('formElement');
 echo $this->form()->openTag($form);
 $content = $this->get('content');
-//foreach ($form as $element) {
-//    $content.= $this->formBranchRender($element, $this->get('branch'));
-//}
 echo $content;
 
 echo $this->form()->closeTag();

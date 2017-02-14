@@ -7,15 +7,17 @@
  */
 use \Zend\Form\Element\Collection;
 
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
 /** @var Collection $collection */
 $collection = $this->get('formElement');
 if ($collection->shouldCreateTemplate()) {
     if ($template = $collection->getTemplateElement()) {
-        $templateMarkup = $this->formBranchRender($template, $this->get('branch'));
-//        if ($template->getLabel()) {
-//            $templateMarkup = $this->formLabel($template) . $templateMarkup;
-//        }
-//        $templateMarkup = $this->escapeHtml($templateMarkup);
+        $templateMarkup = $this->formBranchRender($template, $branch);
     }
 }
 /** @var \Zend\Form\Element $element */
@@ -23,5 +25,5 @@ foreach ($collection as $element) {
     if ($element->getLabel()) {
         echo  $this->formLabel($element);
     }
-    echo $this->formBranchRender($element, $this->get('branch'));
+    echo $this->formBranchRender($element, $branch);
 }

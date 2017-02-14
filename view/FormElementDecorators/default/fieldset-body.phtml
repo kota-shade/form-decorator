@@ -7,6 +7,12 @@
  */
 use \Zend\Form\FieldsetInterface;
 
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
 /** @var \Zend\Form\Fieldset $fieldset */
 $fieldset = $this->get('formElement');
 /** @var \Zend\Form\Element $element */

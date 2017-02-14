@@ -8,12 +8,17 @@
 use \Zend\Form\Element\Collection;
 
 echo $this->get('content');
-
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
 /** @var Collection $collection */
 $collection = $this->get('formElement');
 if ($collection->shouldCreateTemplate()) {
     if ($template = $collection->getTemplateElement()) {
-        $templateMarkup = $this->formBranchRender($template, $this->get('branch'));
+        $templateMarkup = $this->formBranchRender($template, $branch);
         if ($template->getLabel()) {
             $templateMarkup = $this->formLabel($template) . $templateMarkup;
         }
