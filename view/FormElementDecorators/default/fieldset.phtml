@@ -13,8 +13,10 @@ if (array_key_exists('branch', $options)) {
 } else {
     $branch = $this->get('branch');
 }
+$mode = $this->get('mode');
 /** @var \Zend\Form\Fieldset $fieldset */
 $fieldset = $this->get('formElement');
+
 echo "<fieldset>\n";
 if (($label = $fieldset->getLabel()) != null) {
     echo '<label>'.$label."</label>\n";

@@ -14,11 +14,12 @@ if (array_key_exists('branch', $options)) {
 } else {
     $branch = $this->get('branch');
 }
+$mode = $this->get('mode');
 /** @var Collection $collection */
 $collection = $this->get('formElement');
 if ($collection->shouldCreateTemplate()) {
     if ($template = $collection->getTemplateElement()) {
-        $templateMarkup = $this->formBranchRender($template, $branch);
+        $templateMarkup = $this->formBranchRender($template, $branch, $mode);
         if ($template->getLabel()) {
             $templateMarkup = $this->formLabel($template) . $templateMarkup;
         }

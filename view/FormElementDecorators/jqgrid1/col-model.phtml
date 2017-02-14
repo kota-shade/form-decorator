@@ -16,7 +16,7 @@ $content = $this->get('content');
 $elList = [];
 /** @var \Zend\Form\Element $element */
 foreach($baseFieldset as $element) {
-    $elList[] = $this->formBranchRender($element, $branch)."\n";
+    $elList[] = $this->formBranchRender($element, $branch, $this->get('mode'))."\n";
 }
 $res = Json::encode($elList, false, [ 'enableJsonExprFinder'=>true, 'prettyPrint'=>true ]);
 echo $res;

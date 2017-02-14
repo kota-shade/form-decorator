@@ -15,7 +15,8 @@
             <?php
             ENDIF;
             if($element->getOption('HideHeader') != true) {
-                echo $this->formElementView($element, $this->get('branch'), '', ['template' => '/FormElementDecorators/table/head-collection']);
+                echo $this->formElementView($element, $this->get('branch'), $this->get('mode'),
+                    '', ['template' => '/FormElementDecorators/table/head-collection']);
             }
             ?>
             <tbody>
@@ -25,7 +26,8 @@
             </tbody>
             </table>
             <?php
-               echo $this->formElementView($element, $this->get('branch'), '', ['template' => '/FormElementDecorators/default/template']);
+               echo $this->formElementView($element, $this->get('branch'), $this->get('mode'),
+                   '', ['template' => '/FormElementDecorators/default/template']);
             ?>
         </fieldset>
     </td>

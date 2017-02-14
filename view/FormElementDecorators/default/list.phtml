@@ -16,10 +16,10 @@ if (array_key_exists('branch', $options)) {
 } else {
     $branch = $this->get('branch');
 }
-
+$mode = $this->get('mode');
 /** @var \Zend\Form\Element $element */
 foreach ($fieldset as $element) {
-    echo $this->formBranchRender($element, $branch)."\n";
+    echo $this->formBranchRender($element, $branch, $mode)."\n";
 }
 
 

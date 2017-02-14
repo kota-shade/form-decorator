@@ -11,7 +11,7 @@ $classAtt = 'form-control ' . $classAtt;
 $element->setAttribute('class', $classAtt);
 
 $label = ($element->getLabel()) ? $this->formLabel($element) : '';
-$markup = $this->formBranchRender($element, 'default');
+$markup = $this->formBranchRender($element, 'default', $this->get('mode'));
 $type = $element->getAttribute('type');
 ?>
 <div class="form-group wrap-element-row wrap-element-row-<?php echo $type; ?>">

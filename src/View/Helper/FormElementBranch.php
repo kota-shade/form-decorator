@@ -34,22 +34,24 @@ class FormElementBranch extends BaseHelper
     /**
      * @param BaseElement $formElement
      * @param string $branch - ветка из которой извлекать хелперы
+     * @param string $mode - режим показа (просмотр, редактирование и т.п.)
      * @param array $options
      * @return $this|string
      */
-    public function __invoke(BaseElement $formElement, $branch, $content = null, array $options = [])
+    public function __invoke(BaseElement $formElement, $branch, $mode='default', $content = null, array $options = [])
     {
-        return $this->render($formElement, $branch, $content, $options);
+        return $this->render($formElement, $branch, $mode, $content, $options);
     }
 
     /**
      * @param BaseElement $formElement
      * @param string $branch - ветка из которой извлекать хелперы
+     * @param string $mode - режим показа (просмотр, редактирование и т.п.)
      * @param mixed $content
      * @param array $options
      * @return mixed
      */
-    public function render(BaseElement $formElement, $branch, $content = null,  array $options = [])
+    public function render(BaseElement $formElement, $branch, $mode='default', $content = null,  array $options = [])
     {
         if (($newBranch = $formElement->getOption('branch')) != null) {
             $realBranch = $newBranch;
@@ -65,7 +67,7 @@ class FormElementBranch extends BaseHelper
             $options = (array_key_exists('options', $helperConfig)) ? $helperConfig['options'] : [];
             /** @var \Callable $helper */
             $helper = $helperPM->get($helperName);
-            $content = $helper($formElement, $branch, $content, $options);
+            $content = $helper($formElement, $branch, $mode, $content, $options);
         }
 
         return $content;

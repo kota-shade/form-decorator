@@ -34,23 +34,25 @@ class FormElementView extends BaseHelper
     /**
      * @param BaseElement $formElement
      * @param string $branch
+     * @param string $mode - режим показа (просмотр, редактирование и т.п.)
      * @param mixed $content
      * @param array $options
      * @return $this|string
      */
-    public function __invoke(BaseElement $formElement, $branch, $content='', array $options = [])
+    public function __invoke(BaseElement $formElement, $branch, $mode='default', $content='', array $options = [])
     {
-        return $this->render($formElement, $branch, $content, $options);
+        return $this->render($formElement, $branch, $mode, $content, $options);
     }
 
     /**
      * @param BaseElement $formElement
      * @param string $branch
+     * @param string $mode - режим показа (просмотр, редактирование и т.п.)
      * @param mixed $content
      * @param array $options
      * @return mixed
      */
-    public function render(BaseElement $formElement, $branch, $content = '', array $options = [])
+    public function render(BaseElement $formElement, $branch, $mode='default', $content = '', array $options = [])
     {
         if (array_key_exists('template', $options) == false) {
             $msg = sprintf('Missing "template" key in options = %s, branch="%s" classname="%s"',
@@ -68,6 +70,7 @@ class FormElementView extends BaseHelper
             [
                 'formElement' => $formElement,
                 'branch' => $branch,
+                'mode' => $mode,
                 'content' => $content,
                 'options' => $options
             ]

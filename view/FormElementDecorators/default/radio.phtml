@@ -11,9 +11,10 @@ if (array_key_exists('branch', $options)) {
 } else {
     $branch = $this->get('branch');
 }
+$mode = $this->get('mode');
 /** @var \Zend\Form\Element\Radio $element */
 $element = $this->get('formElement');
-if ($branch == 'view') {
+if ($mode == 'view') {
     $valueOptions = $element->getValueOptions();
     $key = $element->getValue();
     $value = null;

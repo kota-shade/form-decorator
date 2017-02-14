@@ -41,23 +41,25 @@ class ColModel extends BaseHelper
     /**
      * @param BaseElement $formElement
      * @param string $branch
+     * @param string $mode - режим показа (просмотр, редактирование и т.п.)
      * @param mixed $content
      * @param array $options
      * @return $this|string
      */
-    public function __invoke(BaseElement $formElement, $branch, $content=null, array $options = [])
+    public function __invoke(BaseElement $formElement, $branch, $mode='default', $content=null, array $options = [])
     {
-        return $this->render($formElement, $branch, $content, $options);
+        return $this->render($formElement, $branch, $mode, $content, $options);
     }
 
     /**
      * @param BaseElement $formElement
      * @param string $branch
+     * @param string $mode - режим показа (просмотр, редактирование и т.п.)
      * @param mixed $content
      * @param array $options
      * @return mixed
      */
-    public function render(\Zend\Form\Form $formElement, $branch, $content = null, array $options = [])
+    public function render(\Zend\Form\Form $formElement, $branch, $mode='default', $content = null, array $options = [])
     {
         //$chain = $this->getHelperChain($formElement, $realBranch);
         $helperPM = $this->helperPM;
@@ -73,7 +75,7 @@ class ColModel extends BaseHelper
         $res = [];
         /** @var BaseElement $element */
         foreach ($baseFieldset as $element) {
-            $res[] = $branchHelper($element, $realBranch, $content);
+            $res[] = $branchHelper($element, $realBranch, $mode, $content);
         }
         $content['colModel'] = $res;
         return $content;

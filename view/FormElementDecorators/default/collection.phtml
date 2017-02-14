@@ -13,11 +13,12 @@ if (array_key_exists('branch', $options)) {
 } else {
     $branch = $this->get('branch');
 }
+$mode = $this->get('mode');
 /** @var Collection $collection */
 $collection = $this->get('formElement');
 if ($collection->shouldCreateTemplate()) {
     if ($template = $collection->getTemplateElement()) {
-        $templateMarkup = $this->formBranchRender($template, $branch);
+        $templateMarkup = $this->formBranchRender($template, $branch, $mode);
     }
 }
 /** @var \Zend\Form\Element $element */
@@ -25,5 +26,5 @@ foreach ($collection as $element) {
     if ($element->getLabel()) {
         echo  $this->formLabel($element);
     }
-    echo $this->formBranchRender($element, $branch);
+    echo $this->formBranchRender($element, $branch, $mode);
 }
