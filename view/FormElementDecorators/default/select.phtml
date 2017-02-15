@@ -15,20 +15,24 @@ $mode = $this->get('mode');
 /** @var \Zend\Form\Element\Select $element */
 $element = $this->get('formElement');
 if ($mode == 'view') {
-    $valueOptions = $element->getValueOptions();
     $key = $element->getValue();
     $value = null;
-    foreach ($valueOptions as $k => &$v) {
-        if (is_array($v)) {
-            //TODO есть такой расширенный формат опций
-            if ($v['value'] == $key) {
-                $value = $v['label'];
-                break;
-            }
-        } else {
-            if ($k == $key) {
-                $value = $v;
-                break;
+    if (method_exists($element, 'findOne')) {
+        $value = $element->findOne($key);
+    } else {
+        $valueOptions = $element->getValueOptions();
+        foreach ($valueOptions as $k => &$v) {
+            if (is_array($v)) {
+                //TODO есть такой расширенный формат опций
+                if ($v['value'] == $key) {
+                    $value = $v['label'];
+                    break;
+                }
+            } else {
+                if ($k == $key) {
+                    $value = $v;
+                    break;
+                }
             }
         }
     }
