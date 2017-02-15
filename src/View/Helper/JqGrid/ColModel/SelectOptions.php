@@ -21,7 +21,11 @@ class SelectOptions extends Expr
     public function __toString() {
         $res = [];
         foreach($this->opt as $k => &$v) {
-            $res[] = sprintf("'%s':'%s'", $k, $v);
+            if (is_array($v)) {
+                $res[] = sprintf("'%s':'%s'", $v['value'], $v['label']);
+            } else {
+                $res[] = sprintf("'%s':'%s'", $k, $v);
+            }
         }
         $ret = '{'. implode(',', $res) . '}';
         return $ret;
