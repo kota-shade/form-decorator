@@ -24,6 +24,7 @@ return [
             HelperNS\JqGrid\ColModel\Select::class => HelperNS\JqGrid\ColModel\Select::class,
             HelperNS\JqGrid\ColModel\Hidden::class => HelperNS\JqGrid\ColModel\Hidden::class,
             HelperNS\JqGrid\ColModel\Checkbox::class => HelperNS\JqGrid\ColModel\Checkbox::class,
+            HelperNS\JqGrid\ColModel\Date::class => HelperNS\JqGrid\ColModel\Date::class,
         ],
         'shared' => [
         ]
@@ -356,6 +357,9 @@ return [
                 ElementNS\Checkbox::class => [
                     [ 'name' => HelperNS\JqGrid\ColModel\Checkbox::class ],
                 ],
+                ElementNS\Date::class => [
+                    [ 'name' => HelperNS\JqGrid\ColModel\Date::class],
+                ]
             ],
 //            'jqGrid1' => [
 //                ZFormNS\Form::class => [
