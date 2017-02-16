@@ -67,6 +67,9 @@ return [
                 ElementNS\Password::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/password'] ],
                 ],
+                ElementNS\Date::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/date'] ],
+                ],
             ],
 //            'view' => [
 //                ZFormNS\Form::class => [
@@ -201,6 +204,9 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button']],
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-colspan'] ],
                 ],
+                ElementNS\Date::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-date'] ],
+                ]
             ],
             'table_tr' => [
                 ZFormNS\Fieldset::class => [
