@@ -247,7 +247,10 @@ return [
                         'class' => 'form-grid-element form-grid-hidden',
                         'style' => 'display:none;',
                     ]],
-                ]
+                ],
+//                ElementNS\Button::class => [
+//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button']],
+//                ],
             ],
 //            'tableView' => [
 //                ZFormNS\Form::class => [
