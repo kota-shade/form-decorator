@@ -31,7 +31,7 @@ class Functions extends Expr
      */
     public function __toString()
     {
-        return "function() {" . $this->getName() . "}";
+        return $this->getName();
     }
 
 
