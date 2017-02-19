@@ -14,9 +14,14 @@ if (array_key_exists('branch', $options)) {
 $mode = $this->get('mode');
 /** @var \Zend\Form\Element $element */
 $element = $this->get('formElement');
+$id = $element->getAttribute('id');
 if ($mode == 'view') {
     $value = $element->getValue();
-    echo '<span>'. $value .'</span>';
+    printf('<span id="info-%s" class="info-%s %s">%s</span>',
+        $id, $id,
+        $element->getAttribute('class'),
+        $value
+    );
     echo $this->formHidden($element);
 } else {
     echo $this->formDate($element);

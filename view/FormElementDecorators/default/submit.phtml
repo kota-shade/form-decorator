@@ -13,6 +13,7 @@ if (array_key_exists('branch', $options)) {
 }
 $mode = $this->get('mode');
 if ($mode == 'view') {
+} else {
     $element = $this->get('formElement');
     echo $this->formSubmit($element);
 }

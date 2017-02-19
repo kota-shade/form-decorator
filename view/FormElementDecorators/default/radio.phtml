@@ -14,6 +14,7 @@ if (array_key_exists('branch', $options)) {
 $mode = $this->get('mode');
 /** @var \Zend\Form\Element\Radio $element */
 $element = $this->get('formElement');
+$id = $element->getAttribute('id');
 if ($mode == 'view') {
     $valueOptions = $element->getValueOptions();
     $key = $element->getValue();
@@ -28,7 +29,11 @@ if ($mode == 'view') {
             }
         }
     }
-    echo '<span>'.$value.'</span>';
+    printf('<span id="info-%s" class="info-%s %s">%s</span>',
+        $id, $id,
+        $element->getAttribute('class'),
+        $value
+    );
     echo $this->formHidden($element);
 } else {
     echo $this->formRadio($element);
