@@ -72,43 +72,6 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/date'] ],
                 ],
             ],
-//            'view' => [
-//                ZFormNS\Form::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/form'] ],
-//                ],
-//                ZFormNS\Fieldset::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list-label'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/fieldset'] ],
-//                ],
-//                ElementNS\Collection::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list-label'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/template'] ],
-//                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/collection'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/fieldset'] ],
-//                ],
-//                ElementNS\Text::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/text'] ],
-//                ],
-//                ElementNS\Select::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/select'] ],
-//                ],
-//                ElementNS\Radio::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/radio'] ],
-//                ],
-//                ElementNS\Hidden::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/hidden'] ],
-//                ],
-//                ElementNS\Submit::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/submit'] ],
-//                ],
-//                ElementNS\Button::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button'] ],
-//                ],
-//                ElementNS\Password::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/password'] ],
-//                ],
-//            ],
             'bootstrap' => [
                 ZFormNS\Form::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list'] ],
@@ -252,92 +215,6 @@ return [
 //                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button']],
 //                ],
             ],
-//            'tableView' => [
-//                ZFormNS\Form::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/table'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/form'] ],
-//                ],
-//                ElementNS\Collection::class => [
-//                    ['name' => HelperNS\FormElementView::class, 'options' => [
-//                        'template' => '/FormElementDecorators/default/list',
-//                        'branch' => 'tableView_tr'
-//                    ]],
-//                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-fieldset']],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-collection']],
-//                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/collection'] ],
-//                ],
-//                ZFormNS\Fieldset::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list']],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-fieldset']],
-//                ],
-//                ElementNS\Text::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row', 'branch' => 'view'] ],
-//                ],
-//                ElementNS\Select::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row', 'branch' => 'view'] ],
-//                ],
-//                ElementNS\Radio::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row', 'branch' => 'view'] ],
-//                ],
-//                ElementNS\Password::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row', 'branch' => 'view'] ],
-//                ],
-//                ElementNS\Hidden::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-hidden', 'branch' => 'view'] ],
-//                ],
-//                ElementNS\Submit::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/submit', 'branch' => 'view']],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-colspan'] ],
-//                ],
-//                ElementNS\Button::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/button']],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/table/row-colspan'] ],
-//                ],
-//            ],
-//            'tableView_tr' => [
-//                ZFormNS\Fieldset::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list']],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
-//                        'template' => '/FormElementDecorators/table/tag', 'tag' => 'tr'
-//                    ]],
-//                ],
-//                ElementNS\Text::class => [
-//                    [ 'name' => ZendElementHelperNS\FormInput::class ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
-//                        'template' => '/FormElementDecorators/table/tag', 'tag' => 'td', 'branch' => 'view',
-//                        //'style' => 'border:1px solid #000;',
-//                    ]],
-//                ],
-//                ElementNS\Password::class => [
-//                    [ 'name' => ZendElementHelperNS\FormInput::class ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
-//                        'template' => '/FormElementDecorators/table/tag', 'tag' => 'td', 'branch' => 'view',
-//                        //'style' => 'border:1px solid #000;',
-//                    ]],
-//                ],
-//                ElementNS\Select::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/select', 'branch' => 'view'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
-//                        'template' => '/FormElementDecorators/table/tag', 'tag' => 'td',
-//                        'style' => 'border:1px solid #000;',
-//                    ]],
-//                ],
-//                ElementNS\Radio::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/radio', 'branch' => 'view'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
-//                        'template' => '/FormElementDecorators/table/tag', 'tag' => 'td',
-//                        'style' => 'border:1px solid #000;',
-//                    ]],
-//                ],
-//                ElementNS\Hidden::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/hidden', 'branch' => 'view'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
-//                        'template' => '/FormElementDecorators/table/tag', 'tag' => 'td',
-//                        'style' => 'display:none; border:1px solid #000;',
-//                    ]],
-//                ]
-//            ],
             'jqGrid' => [
                 ZFormNS\Form::class => [
                     [ 'name' => HelperNS\JqGrid\ColModel::class ],
@@ -364,30 +241,6 @@ return [
                     [ 'name' => HelperNS\JqGrid\ColModel\Date::class],
                 ]
             ],
-//            'jqGrid1' => [
-//                ZFormNS\Form::class => [
-//                    [ 'name' => HelperNS\JqGrid\Params::class ],
-//                    [ 'name' => HelperNS\JqGrid\ColModel::class ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid1/grid-function'] ],
-//                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/grid-function'] ],
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid1/grid'] ],
-//                ],
-//                ZFormNS\Fieldset::class => [
-//                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid1/list-col-model'] ],
-//                ],
-//                ElementNS\Text::class => [
-//                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
-//                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/col-model-text'] ],
-//                ],
-//                ElementNS\Select::class => [
-//                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
-//                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/col-model-text'] ],
-//                ],
-//                ElementNS\Radio::class => [
-//                    [ 'name' => HelperNS\JqGrid\ColModel\Text::class ],
-//                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/jqgrid/col-model-text'] ],
-//                ],
-//            ],
         ]
     ],
     'view_manager' => array(

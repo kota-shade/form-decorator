@@ -61,6 +61,8 @@ class FormElementBranch extends BaseHelper
         $chain = $this->getHelperChain($formElement, $realBranch);
         $helperPM = $this->helperPM;
 
+        $this->prepareElement($formElement);
+
         /** @var array $helperConfig */
         foreach ($chain as $helperConfig) {
             $helperName = $helperConfig['name'];
@@ -71,6 +73,20 @@ class FormElementBranch extends BaseHelper
         }
 
         return $content;
+    }
+
+    protected function prepareElement(BaseElement $formElement)
+    {
+        if (($id = $formElement->getAttribute('id')) == null) {
+            $id = $this->name2id($formElement->getName());
+            $formElement->setAttribute('id', $id);
+        }
+    }
+
+    protected function name2id($name)
+    {
+        $id = str_replace(['[', ']'], '_', $name);
+        return $id;
     }
 
     /**
