@@ -10,17 +10,11 @@ $classAtt = $element->getAttribute('class');
 $classAtt = 'form-control ' . $classAtt;
 $element->setAttribute('class', $classAtt);
 
-$options = $this->get('options');
-$branch = 'default';
-if (isset($options['branch']) == true) {
-    $branch = $options['branch'];
-}
-
 $label = ($element->getLabel()) ? $this->formLabel($element) : '';
-$markup = $this->formBranchRender($element, $branch, $this->get('mode'));
+$markup = $this->formBranchRender($element, 'default', $this->get('mode'));
 $type = $element->getAttribute('type');
 ?>
 <div class="form-group wrap-element-row wrap-element-row-<?php echo $type; ?>">
     <?php echo $label; ?>
-    <div class="col-sm-8 wrap-element-body"><?php echo $markup; ?></div>
+    <div class="col-sm-12 wrap-element-body"><?php echo $markup; ?></div>
 </div>

@@ -33,8 +33,10 @@ $(document).ready(function() {
 
     <?php
      $gridMethods = $form->getOption('jqGridMethods');
-     foreach ($gridMethods as $methodObj) {
-        echo 'gridObj.jqGrid('. $methodObj . ");\n";
+     if (is_array($gridMethods)) {
+         foreach ($gridMethods as $methodObj) {
+            echo 'gridObj.jqGrid('. $methodObj . ");\n";
+         }
      }
     ?>
 

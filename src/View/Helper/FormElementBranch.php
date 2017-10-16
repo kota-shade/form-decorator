@@ -21,6 +21,18 @@ class FormElementBranch extends BaseHelper
      */
     protected $branchesConfig;
 
+    /** @var string имя хелпера вывода ошибок */
+    protected $elementErrorsHelperName = 'form_element_errors';
+
+    /**
+     * @var BaseHelper  хелпер выдачи ошибок
+     */
+    protected $elementErrorsHelper = null;
+
+    protected $errorHelperOptions = [
+        'class' => 'input-error-list',
+    ];
+
     public function __construct(HelperPluginManager $helperPM, $config)
     {
         $this->helperPM = $helperPM;
@@ -29,6 +41,13 @@ class FormElementBranch extends BaseHelper
             throw new \Exception('Missing "decoratorBranch" section in confihguration');
         }
         $this->branchesConfig = $this->config['decoratorBranch'];
+
+        if (array_key_exists('elementErrorsHelperName', $this->config)) {
+            $this->elementErrorsHelperName = $this->config['elementErrorsHelperName'];
+        }
+        if (array_key_exists('errorsHelperOptions', $this->config)) {
+            $this->elementErrorsHelperName = $this->config['errorsHelperOptions'];
+        }
     }
 
     /**
@@ -63,10 +82,16 @@ class FormElementBranch extends BaseHelper
 
         $this->prepareElement($formElement);
 
+        $markupError = null;
+        if (count($formElement->getMessages()) > 0) {
+            $markupError  = $this->renderErrors($formElement);
+        }
+
         /** @var array $helperConfig */
         foreach ($chain as $helperConfig) {
             $helperName = $helperConfig['name'];
             $options = (array_key_exists('options', $helperConfig)) ? $helperConfig['options'] : [];
+            $options['markupError'] = $markupError;
             /** @var \Callable $helper */
             $helper = $helperPM->get($helperName);
             $content = $helper($formElement, $branch, $mode, $content, $options);
@@ -125,5 +150,39 @@ class FormElementBranch extends BaseHelper
             throw new \Exception('Unknown branch ='.$key);
         }
         return $this->branchesConfig[$key];
+    }
+
+    /**
+     * генерирует сверстанный текст ошибок
+     * @param BaseElement $formElement
+     * @return string
+     */
+    protected function renderErrors(BaseElement $formElement)
+    {
+        $elementErrorsHelper = $this->getElementErrorsHelper();
+        $elementErrors = $elementErrorsHelper->render($formElement, $this->errorHelperOptions);
+        return $elementErrors;
+    }
+
+    /**
+     * Достает хелпер дле верстки ошибок
+     *
+     * @return BaseHelper
+     */
+    protected function getElementErrorsHelper()
+    {
+        if ($this->elementErrorsHelper) {
+            return $this->elementErrorsHelper;
+        }
+
+        if (method_exists($this->view, 'plugin')) {
+            $this->elementErrorsHelper = $this->view->plugin($this->elementErrorsHelperName);
+        }
+
+        if (!$this->elementErrorsHelper instanceof BaseHelper) {
+            $this->elementErrorsHelper = $this->helperPM->get($this->elementErrorsHelperName);
+        }
+
+        return $this->elementErrorsHelper;
     }
 }

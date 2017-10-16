@@ -19,11 +19,12 @@ $mode = $this->get('mode');
 $collection = $this->get('formElement');
 if ($collection->shouldCreateTemplate()) {
     if ($template = $collection->getTemplateElement()) {
+        $placeholder = $collection->getTemplatePlaceholder();
         $templateMarkup = $this->formBranchRender($template, $branch, $mode);
         if ($template->getLabel()) {
             $templateMarkup = $this->formLabel($template) . $templateMarkup;
         }
         $templateMarkup = $this->escapeHtml($templateMarkup);
-        echo '<span class="template" data-template="'.$templateMarkup.'"></span>';
+        printf('<span class="template" data-template="%s" data-placeholder="%s"></span>', $templateMarkup, $placeholder);
     }
 }

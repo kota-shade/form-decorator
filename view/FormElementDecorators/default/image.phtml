@@ -5,6 +5,7 @@
  * Date: 23.01.17
  * Time: 22:53
  */
+
 $options = $this->get('options');
 if (array_key_exists('branch', $options)) {
     $branch = $options['branch'];
@@ -23,22 +24,24 @@ if (isset($options['markupError'])) {
     $errorMsg = $options['markupError'];
     $element->setAttribute('class', $element->getAttribute('class') . ' input-error-element');
 }
+if (($value = $element->getValue()) != null) {
+    $element->setAttribute('src', $value);
+}
+
 
 //echo '<div class="element-wrapper">';
 printf('<div class="element-wrapper element-wrapper-type-%s element-wrapper-id-%s">',
     $element->getAttribute('type'), $id
 );
 if ($currentMode == 'view') {
-    $value = $element->getValue();
-    printf('<span id="info-%s" class="info-%s %s">%s</span>',
-        $id, $id,
-        $element->getAttribute('class'),
-        $value
-    );
+    echo '<img ';
+    foreach($element->getAttributes() as $k=>&$v) {
+        printf(' %s="%s"', $k, $v);
+    }
+    echo '>';
     echo $errorMsg;
-    echo $this->formHidden($element);
 } else {
-    echo $this->formText($element);
+    echo $this->formImage($element);
     echo $errorMsg;
 }
 echo '</div>';

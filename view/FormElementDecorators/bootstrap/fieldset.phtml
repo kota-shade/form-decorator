@@ -19,8 +19,13 @@ if ($isBaseFS == false) {
     $classStr .= 'panel panel-default ';
 }
 $classStr .= 'wrap-element-fieldset'. $type;
+
+$fsAttStr=' ';
+foreach($element->getAttributes() as $k=>&$v) {
+    $fsAttStr .= sprintf('%s="%s"', $k, $v);
+}
 ?>
-<fieldset>
+<fieldset <?php echo $fsAttStr; ?> >
     <div class="<?php echo $classStr; ?>">
         <?php
         if ($isBaseFS==false && $label) {

@@ -1,7 +1,10 @@
 <tr>
-    <td colspan="2" style="padding:2px;">
+    <td colspan="2" class="fieldset-row">
         <fieldset id="<?php echo $this->get('formElement')->getAttribute('id'); ?>">
-        <table class="tbl-fieldset" id="tbl-<?php echo $this->get('formElement')->getName(); ?>">
+        <table
+            class="tbl-fieldset <?php echo $this->get('formElement')->getAttribute('class');?>"
+            id="tbl-<?php echo $this->get('formElement')->getName(); ?>"
+            >
         <?php
         /** @var \Zend\Form\Fieldset $element */
         $element = $this->get('formElement');

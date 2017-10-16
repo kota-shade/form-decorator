@@ -1,0 +1,54 @@
+<?php
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+/** @var Zend\Form\Element $element */
+$element = $this->get('formElement');
+if (($type = $element->getAttribute('type')) == null) {
+    $type='collection';
+}
+
+$class = $element->getAttribute('class');
+?>
+<div class="form-group wrap-element-row wrap-element-row-<?php echo $type; ?>">
+    <fieldset class="collection">
+        <table class="table tbl-collection <?php echo $class; ?>"
+               id="tbl-<?php echo $this->get('formElement')->getAttribute('id'); ?>"
+            >
+        <?php
+        /** @var \Zend\Form\Element\Collection $element */
+        $element = $this->get('formElement');
+        IF($element->getLabel()) :
+        ?>
+            <caption><?php echo $this->formLabel($element); ?></caption>
+        <?php
+        ENDIF;
+        if($element->getOption('HideHeader') != true) {
+            echo $this->formElementView($element, $this->get('branch'), $this->get('mode'),
+                '', ['template' => '/FormElementDecorators/bootstrap/head-table-collection']);
+        }
+        ?>
+            <tbody>
+            <?php
+                echo $this->get('content');
+            ?>
+            </tbody>
+        </table>
+        <?php
+           echo $this->formElementView($element, $branch, $this->get('mode'),
+               '', ['template' => '/FormElementDecorators/default/template']);
+        ?>
+
+        <?php //формирование кнопок под коллекцией
+        echo $this->partial('/FormElementDecorators/bootstrap/partials/collection-buttons.phtml', [
+            'branch' => $this->get('branch'),
+            'mode' => $this->get('mode'),
+            'element' => $element
+        ]);
+        ?>
+
+    </fieldset>
+</div>

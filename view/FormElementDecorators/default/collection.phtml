@@ -24,7 +24,7 @@ if ($collection->shouldCreateTemplate()) {
 /** @var \Zend\Form\Element $element */
 foreach ($collection as $element) {
     if ($element->getLabel()) {
-        echo  $this->formLabel($element);
+        echo  $this->form_label($element);
     }
     echo $this->formBranchRender($element, $branch, $mode);
 }
