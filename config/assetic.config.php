@@ -48,10 +48,10 @@ return [
                         ]
                     ],
                     'form_decorator_jqgrid_common_js' => ['assets' => [
-                        'js/common.js'
+                        'js/jqgrid_common.js'
                     ]],
                     'form_decorator_jqgrid_common_css' => ['assets' => [
-                        'css/common.css'
+                        'css/jqgrid_common.css'
                     ]],
                 ],
             ],
