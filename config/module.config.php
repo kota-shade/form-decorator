@@ -7,7 +7,11 @@ use Zend\Form\View\Helper as ZendElementHelperNS;
 use Zend\View\Helper as ViewHelperNS;
 use Zend\Form as ZFormNS;
 
-return [
+$assets = include(__DIR__ . '/assetic.config.php');
+
+return array_merge(
+    $assets,
+    [
     'view_helpers' => [
         'aliases' => [
             'formBranchRender' => HelperNS\FormElementBranch::class,
@@ -321,4 +325,4 @@ return [
             __DIR__ . '/../view',
         ),
     ),
-];
+]);
