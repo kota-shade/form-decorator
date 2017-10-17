@@ -1,7 +1,7 @@
 Помощники в обслуживании элемента "внешний селектор" и окна диалога
 ===================================================================
 
-\Rn5Core\Form\Element\ExternalSelect - элемент - который позволяет выбирать значения из списка с помощью внешнего селектора.
+Form\Element\ExternalSelect - элемент - который позволяет выбирать значения из списка с помощью внешнего селектора.
  Это аналог select, но применяется для случаев, когда список велик, или не укладывается в концепцию key=>value, а подразумевает
  выдачу дополнительной информации пользователю кроме value.
 
@@ -37,7 +37,7 @@ user-friendly значение для ExternalSelect-элемента. Т.о. з
 Используется jqgrid, где необходимы поля key, value;
 Поле key должно представлять из себя радиокнопку вида изложенного выше.
 Поле value - текстовое поле
-для автоматизации сделан стандартный форматер rn5ExternalSelectFormatter, который нужно назначить полю с именем 'key'
+для автоматизации сделан стандартный форматер jqGridExternalSelectFormatter, который нужно назначить полю с именем 'key'
 
 Пример полей из базового филдсета простейшей формы, описывающей грид
     $this->add([
@@ -49,7 +49,7 @@ user-friendly значение для ExternalSelect-элемента. Т.о. з
                 'search' => false,
                 'width' => 30,
                 'fixed' => true,
-                'formatter' => new Expr('rn5ExternalSelectFormatter'),
+                'formatter' => new Expr('jqGridExternalSelectFormatter'),
             ]
         ]
     ]);
@@ -64,13 +64,13 @@ user-friendly значение для ExternalSelect-элемента. Т.о. з
                     'sopt' => ["cn", 'eq','ne','bw', "bn", "ew", "en", "nc"],
                 ],
                 'classes' => 'grid-cell',
-                'cellattr' => new Expr('rn5CommonAttrSetting'),
+                'cellattr' => new Expr('jqGridCommonAttrSetting'),
                 'search' => false,
             ]
         ]
     ]);
 
-форматер rn5ExternalSelectFormatter превратит значение key в радиокнопку вида
+форматер jqGridExternalSelectFormatter превратит значение key в радиокнопку вида
 <input type='radio' name='key' value='" + cellValue + "' data-value='"+ value +"\'>"
 А колбэк, автоматически повешенный на кнопку OK закроет диалог и подставит выбранную пару id, value в ExternalSelect-элемент
 
@@ -82,7 +82,7 @@ ExternalSelectList.SelectProgram = ExternalSelectList['SelectProgram'] || functi
     ExternalSelectList.ExternalSelectDialog.apply(me, arguments); //наследуемся от ExternalSelectDialog
 
     //формируем необходимые даные для окна диалога
-    var url = '/sp-report/report/finance-ws-results/program-list-by-period';
+    var url = '/report/some-list-by-period';
     $.ajax({
         async: false,
         url: url,
@@ -99,7 +99,7 @@ ExternalSelectList.SelectProgram = ExternalSelectList['SelectProgram'] || functi
 2) используем данный обработчик в элементе формы
 $this->add([
     'name' => 'ExternalSelect',
-    'type' => \Rn5Core\Form\Element\ExternalSelect::class,
+    'type' => \FormDecorator\Form\Element\ExternalSelect::class,
     'attributes' => [],
     'options' => [
         'label' => 'ExternalSelect 1',
@@ -110,7 +110,7 @@ $this->add([
 ]);
 
 3) обеспечиваем подгрузку в accets на странице.
- а) dialogUI.js - для реализации ui.dialog в '@rn5_core_dialogUI_js' или другой реализатор диалога
- б) externalSelect.js  в '@rn5_core_externalSelect_js'
- в) возможно, rn5/grid/assets/js/common.js  '@rn5_grid_common_js' в ассетсах для формирования у грида правильного radio-элемента
+ а) dialogUI.js - реализация диалога через jquery ui.dialog
+ б) externalSelect.js  в '@form_decorator_externalSelect_js'
+ в) возможно, form-decorator/assets/js/jqgrid_common.js  '@form_decorator_grid_common_js' в ассетсах для формирования у грида правильного radio-элемента
 
