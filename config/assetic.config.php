@@ -47,6 +47,12 @@ return [
                             'js/jqgridButtonFormatter.js',
                         ]
                     ],
+                    'form_decorator_jqgrid_common_js' => ['assets' => [
+                        'js/common.js'
+                    ]],
+                    'form_decorator_jqgrid_common_css' => ['assets' => [
+                        'css/common.css'
+                    ]],
                 ],
             ],
         ],
