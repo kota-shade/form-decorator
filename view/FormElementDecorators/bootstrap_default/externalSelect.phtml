@@ -1,0 +1,87 @@
+<?php
+
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+$type = $element->getAttribute('type');
+
+if (($currentMode = $element->getOption('mode')) == null) {
+    $currentMode = $mode;
+}
+
+$name = $element->getName();
+$value = $element->getValue();
+$errorMsg = $errClass = '';
+if (isset($options['markupError'])) {
+    $errorMsg = $options['markupError'];
+    $element->setAttribute('class', $element->getAttribute('class') . ' input-error-element');
+}
+
+if ($currentMode == 'view') {
+        printf('<span id="info-%s" class="info-%s %s">%s</span>',
+            $id, $id,
+            $element->getAttribute('class'),
+            (isset($value['value']) ? $value['value'] : '')
+        );
+        echo $errorMsg;
+
+        $hiddenEl = new \Zend\Form\Element\Hidden($name.'[id]');
+        $hiddenEl->setAttributes($element->getAttributes())
+            ->setAttribute('name', $name.'[id]') //NB!!! т.к. из старого элемента приходит старое имя
+            ->setAttribute('id', $id . '-id')
+            ->setValue((isset($value['id']) ? $value['id'] : ''));
+        echo $this->formHidden($hiddenEl);
+
+    $hiddenEl = new \Zend\Form\Element\Hidden($name.'[value]');
+    $hiddenEl->setAttributes($element->getAttributes())
+        ->setAttribute('name', $name.'[value]') //NB!!! т.к. из старого элемента приходит старое имя
+        ->setAttribute('id', $id . '-value')
+        ->setValue((isset($value['value']) ? $value['value'] : ''));
+    echo $this->formHidden($hiddenEl);
+} else {
+    $input = new \Zend\Form\Element\Text();
+    $input->setName($name.'[value]')
+        ->setAttribute('readonly', 'readonly')
+        ->setValue((isset($value['value']) ? $value['value'] : ''))
+        ->setAttribute('id', $id . '-value')
+        ->setAttribute('class', 'form-control');
+
+    echo $errorMsg;
+
+    $hidden = new \Zend\Form\Element\Hidden();
+    $hiddenName = $name.'[id]';
+    $hidden->setName($name.'[id]')
+        ->setValue((isset($value['id']) ? $value['id'] : ''))
+        ->setAttribute('id', $id . '-id');
+
+    $onClick='';
+    if (($clickHandler=$element->getOption('clickHandler')) == null) {
+        $clickHandler = '';
+    }
+
+    $iconClass = 'glyphicon glyphicon-search';
+    if (($optIconClass = $element->getOption('icon-class')) != null) {
+        $iconClass = $optIconClass;
+    }
+    $markup = sprintf('<div id="ext-select-%s" class="element-wrapper ext-select ext-select-search-single-element ext-select-%s %s input-group">'.
+        '%s%s'.
+        '<span class="input-group-addon">'.
+        '<span class="ext-select-search ext-select-search-single %s cursor-pointer" data-clickHandler="%s"></span>'.
+        '</span></div>',
+        $id, $id,
+        $element->getAttribute('class'),
+        $this->formText($input),
+        $this->formHidden($hidden),
+        $iconClass,
+        $clickHandler
+    );
+
+    echo  $markup;
+}

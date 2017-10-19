@@ -2,6 +2,7 @@
 namespace FormDecorator;
 
 use FormDecorator\View\Helper as HelperNS;
+use FormDecorator\Form\Element as FDElementNS;
 use Zend\Form\Element as ElementNS;
 use Zend\Form\View\Helper as ZendElementHelperNS;
 use Zend\View\Helper as ViewHelperNS;
@@ -140,6 +141,20 @@ return array_merge(
                 ],
                 ElementNS\Image::class => [
                     ['name' => HelperNS\FormElementView::class, 'options' => ['template' => '/FormElementDecorators/bootstrap/row']],
+                ],
+                FDElementNS\ExternalSelect::class => [
+                    ['name' => HelperNS\FormElementView::class, 'options' => [
+                        'template' => '/FormElementDecorators/bootstrap/row',
+                        'branch' => 'bootstrap_default'
+                    ]],
+                ],
+                FDElementNS\ExternalSelectMulti::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/externalSelectMulti'] ],
+                ],
+            ],
+            'bootstrap_default' => [
+                FDElementNS\ExternalSelect::class => [
+                    ['name' => HelperNS\FormElementView::class, 'options' => ['template' => '/FormElementDecorators/bootstrap_default/externalSelect']],
                 ],
             ],
             'minimal' => [
