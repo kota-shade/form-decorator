@@ -3,6 +3,7 @@ namespace FormDecorator;
 
 use FormDecorator\View\Helper as HelperNS;
 use FormDecorator\Form\Element as FDElementNS;
+use FormDecorator\Filter as FilterNS;
 use Zend\Form\Element as ElementNS;
 use Zend\Form\View\Helper as ZendElementHelperNS;
 use Zend\View\Helper as ViewHelperNS;
@@ -39,6 +40,12 @@ return array_merge(
         'shared' => [
         ]
     ],
+    'filters' => [
+            'invokables' => [
+                FilterNS\StringToArray::class => FilterNS\StringToArray::class,
+                FilterNS\ArrayValueJsonDecode::class => FilterNS\ArrayValueJsonDecode::class,
+            ],
+        ],
     'FormElementDecorators' => [
         'decoratorBranch' => [
             'default' => [
