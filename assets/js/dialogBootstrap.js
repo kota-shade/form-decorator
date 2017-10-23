@@ -111,9 +111,11 @@ var commonDialog = commonDialog || function(header, body, buttons, options) {
                 //'<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>'+
             '</div>';
 
+        var dialogClass = options['class'] || '';
+
         var dialogTxt =
             '<div class="modal fade" id="' + dialogId + '" role="dialog">'+
-                '<div class="modal-dialog">'+
+                '<div class="modal-dialog ' + dialogClass + '">'+
                     '<div class="modal-content">'+
                         dialogHeader +
                         dialogBody +
@@ -135,6 +137,7 @@ var commonDialog = commonDialog || function(header, body, buttons, options) {
         }
 
         $.extend(options, {show: true});
+        //console.log('KOTA dialog_options=', options);
         $(dialog).modal(options);
 
         //удаляем и из ДОМа тоже
