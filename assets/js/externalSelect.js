@@ -167,7 +167,7 @@ ExternalSelectList.ExternalSelectDialogMulti = function (element) {
 var ExternalSelectFLAG;
 
 $(document).ready(function() {
-    if (ExternalSelectFLAG == true) {
+    if (ExternalSelectFLAG === true) {
         return; //защита от повторной инициализации
     }
     ExternalSelectFLAG = true;
@@ -178,7 +178,7 @@ $(document).ready(function() {
      */
     var doSelectHandler = function(elementButton) {
         var hdlName = $(elementButton).attr('data-clickHandler');
-        if (ExternalSelectList[hdlName] == undefined) {
+        if (ExternalSelectList[hdlName] === undefined) {
             throw new Error('Определите обработчик ExternalSelectList['+hdlName+']');
         }
         var hdl = new ExternalSelectList[hdlName](elementButton);
