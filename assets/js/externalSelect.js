@@ -19,7 +19,11 @@ var ExternalSelectList = ExternalSelectList || {
                 $(wrapEl).find('input[name $= "[value]"]').val(value).trigger('change');
                 $(wrapEl).find('input[name $= "[id]" ]').val(id).trigger('change').trigger('change_finished');
             };
-
+            me.getValue = function() {
+                var wrapEl = $(element).closest('.ext-select');
+                var value = $(wrapEl).find('input[name $= "[id]" ]').val();
+                return value;
+            }
         }
     };
 
@@ -104,10 +108,24 @@ ExternalSelectList.ExternalSelectDialogMulti = function (element) {
     me.findExtSelectMulti = function() {
         //console.log('el', element);
         var wrapEl = $(element).siblings('.ext-select-wrapper');
-        me.delValue(wrapEl);
         //console.log('WRAP ', wrapEl);
         var selectElement = $(wrapEl).find('.ext-select-multi');
         return selectElement;
+    };
+
+    /**
+     * Получение массива ранее выбранных значений
+     */
+    me.getValue = function() {
+        var selectElement = me.findExtSelectMulti();
+        var elementValue = {};
+        $('div.token', selectElement.closest('div.tokenfield')).each(function () {
+            var data = $(this).data('value');
+            if (data['value'] !== undefined) {
+                elementValue[''+data['value']] = data['label'];
+            }
+        });
+        return elementValue;
     };
 
     /**
