@@ -10,6 +10,9 @@ class Select extends BaseHelper
 {
     //private $emptyPair = ['__empty__' => ''];
     private $emptyPair = ['' => ''];
+    private $delimiter = '||';
+    private $separator = '::';
+
     /**
      * @param BaseElement $formElement
      * @param string $branch
@@ -35,6 +38,12 @@ class Select extends BaseHelper
     {
         /** @var BaseElement $formElement */
         $valueOptions =  $formElement->getValueOptions();
+        if (($delimiter = $formElement->getOption('delimiter')) == null) {
+            $delimiter = $this->delimiter;
+        }
+        if (($separator = $formElement->getOption('separator')) == null) {
+            $separator = $this->separator;
+        }
 
         $searchOptions = $this->getEmptyPair() + $valueOptions;
         /** @var \Zend\Form\Element $column */
@@ -42,6 +51,7 @@ class Select extends BaseHelper
         if (($label = $formElement->getLabel()) == '') {
             $label = $name;
         }
+        $selectOptions = new SelectOptions($searchOptions, $delimiter, $separator);
         $res = [
             'name' => $name,
             'index' => $name,
@@ -50,11 +60,15 @@ class Select extends BaseHelper
             'edittype' => 'select',
             'formatter' => 'select',
             'searchoptions' => [
-                'value' => new SelectOptions($searchOptions),
+                'value' => $selectOptions,
                 'sopt' => ['eq','ne'],
+                'delimiter' => $delimiter,
+                'separator' => $separator,
             ],
             'editoptions' => [
-                'value' => new SelectOptions($valueOptions)
+                'value' => $selectOptions,
+                'delimiter' => $delimiter,
+                'separator' => $separator,
             ],
         ];
 
