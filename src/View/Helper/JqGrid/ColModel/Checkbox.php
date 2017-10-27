@@ -9,6 +9,8 @@ use Zend\Form\Element\Checkbox as BaseElement;
 class Checkbox extends BaseHelper
 {
     private $emptyPair = ['' => ''];
+    private $delimiter = '||';
+    private $separator = '::';
 
     /**
      * @param BaseElement $formElement
@@ -39,6 +41,12 @@ class Checkbox extends BaseHelper
             $formElement->getCheckedValue() => 'Да',
             $formElement->getUncheckedValue() => 'Нет',
         ];
+        if (($delimiter = $formElement->getOption('delimiter')) == null) {
+            $delimiter = $this->delimiter;
+        }
+        if (($separator = $formElement->getOption('separator')) == null) {
+            $separator = $this->separator;
+        }
 
         $searchOptions = $valueOptions;
         /** @var \Zend\Form\Element $column */
@@ -46,6 +54,7 @@ class Checkbox extends BaseHelper
         if (($label = $formElement->getLabel()) == '') {
             $label = $name;
         }
+        $selectOptions = new SelectOptions($searchOptions, $delimiter, $separator);
         $res = [
             'name' => $name,
             'index' => $name,
@@ -54,11 +63,15 @@ class Checkbox extends BaseHelper
             'edittype' => 'select',
             'formatter' => 'select',
             'searchoptions' => [
-                'value' => new SelectOptions($searchOptions),
+                'value' => $selectOptions,
+                'delimiter' => $delimiter,
+                'separator' => $separator,
                 'sopt' => ['eq','ne'],
             ],
             'editoptions' => [
-                'value' => new SelectOptions($valueOptions)
+                'value' => $selectOptions,
+                'delimiter' => $delimiter,
+                'separator' => $separator,
             ],
             'align' => 'center'
         ];
