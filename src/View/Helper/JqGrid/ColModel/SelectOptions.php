@@ -16,15 +16,13 @@ class SelectOptions extends Expr
     private $delimiter;
     private $separator;
 
-    public function __construct($opt = array(), $delimiter, $separator) {
+    public function __construct($opt = array(), $delimiter = '||', $separator = '::') {
         $this->opt = $opt;
         $this->delimiter = $delimiter;
         $this->separator = $separator;
     }
 
     public function __toString() {
-//        $res = $this->getOptionList();
-//        $ret = '{'. implode(',', $res) . '}';
         $ret = $this->getValue();
         return '"' . $ret . '"';
     }
@@ -43,20 +41,4 @@ class SelectOptions extends Expr
         return $ret;
     }
 
-    /**
-     * create array of select options
-     * @return array
-     */
-    private function getOptionList()
-    {
-        $res = [];
-        foreach($this->opt as $k => &$v) {
-            if (is_array($v)) {
-                $res[] = sprintf("'%s':'%s'", $v['value'], $v['label']);
-            } else {
-                $res[] = sprintf("'%s':'%s'", $k, $v);
-            }
-        }
-        return $res;
-    }
 }
