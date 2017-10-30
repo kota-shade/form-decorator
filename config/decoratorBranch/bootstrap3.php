@@ -65,7 +65,7 @@ return [
                 ],
                 FDElementNS\ExternalSelect::class => [
                     ['name' => HelperNS\FormElementView::class, 'options' => [
-                        'template' => '/FormElementDecorators/bootstrap/row',
+                        'template' => '/FormElementDecorators/bootstrap3/row',
                         'branch' => 'bootstrap_default'
                     ]],
                 ],
