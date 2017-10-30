@@ -1,0 +1,60 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 13.02.17
+ * Time: 23:38
+ */
+use \Zend\Form\FieldsetInterface;
+
+/** @var \Zend\Form\Fieldset $element */
+$element = $this->get('formElement');
+$content = $this->get('content');
+$label = $element->getLabel();
+$errorMessage = $element->getAttribute('error-message');
+$type = $element->getAttribute('type');
+
+//$isBaseFS = $element->useAsBaseFieldset();
+//$classStr = '';
+//if ($isBaseFS == false) {
+//    $classStr .= 'panel panel-default ';
+//}
+//$classStr .= 'wrap-element-fieldset'. $type;
+$class = 'wrap-element-fieldset '.$element->getAttribute('class');
+$element->setAttribute('class', $class);
+
+//FIXME в хелпер создания списков атрибутов, один из параметров набор доп.атррибутов и параметр замены/добавления
+$fsAttStr=' ';
+foreach($element->getAttributes() as $k=>&$v) {
+    $fsAttStr .= sprintf('%s="%s"', $k, $v);
+}
+
+$wrapAttList = $element->getOption('wrapperAttributes');
+$wrapAttStr = '';
+if (is_array($wrapAttList)) {
+   foreach($wrapAttList as $k => &$v) {
+       $wrapAttStr .= sprintf('%s="%s"', $k, $v);;
+   }
+}
+?>
+
+<fieldset <?= $fsAttStr ?>>
+    <div <?= $wrapAttStr ?> >
+    <?php
+        if (($label = $element->getLabel()) != null) {
+            //FIXME в хелпер создания списков атрибутов
+            $labelAttributesStr = ' ';
+            foreach($element->getLabelAttributes() as $k=>&$v) {
+                $labelAttributesStr .= sprintf('%s="%s"', $k, $v);
+            }
+            $labelOptions = $element->getLabelOptions(); //TODO вынести в хелпер генерации заголовка
+
+            printf("<legend %s>%s</legend>\n", $labelAttributesStr, $label);
+        }
+        ?>
+        <?php if($errorMessage): ?>
+            <div class="text-danger form-panel-error"><?php echo $errorMessage; ?></div>
+        <?php endif; ?>
+    <?php echo $content; ?>
+    </div>
+</fieldset>
