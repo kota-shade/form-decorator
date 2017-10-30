@@ -19,12 +19,12 @@ if (isset($options['branch']) == true) {
     $branch = $options['branch'];
 }
 
-if (!isset($options['ctrl_wrap_att']['class'])) {
-    $options['ctrl_wrap_att']['class'] = 'col-sm-8';
+if (!isset($options['wrapperAttributes']['class'])) {
+    $options['wrapperAttributes']['class'] = 'col-sm-8';
 }
-$options['ctrl_wrap_att']['class'] = 'wrap-element-body ' . $options['ctrl_wrap_att']['class'];
+$options['wrapperAttributes']['class'] = 'wrap-element-body ' . $options['wrapperAttributes']['class'];
 $ctrlWrapAtt = [];
-foreach($options['ctrl_wrap_att'] as $k => &$v) {
+foreach($options['wrapperAttributes'] as $k => &$v) {
     $ctrlWrapAtt[] = "$k='$v'";
 }
 
