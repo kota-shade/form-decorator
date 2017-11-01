@@ -72,6 +72,10 @@ return [
                 FDElementNS\ExternalSelectMulti::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/externalSelectMulti'] ],
                 ],
+                FDElementNS\InlineFieldset::class => [
+                    //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row']],
+                ],
             ],
         ],
     ],

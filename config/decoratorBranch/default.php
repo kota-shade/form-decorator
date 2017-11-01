@@ -8,6 +8,7 @@
 use Zend\Form as ZFormNS;
 use FormDecorator\View\Helper as HelperNS;
 use Zend\Form\Element as ElementNS;
+use FormDecorator\Form\Element as FDElementNS;
 
 return [
     'FormElementDecorators' => [
@@ -62,6 +63,11 @@ return [
                 ],
                 ElementNS\Image::class => [
                     ['name' => HelperNS\FormElementView::class, 'options' => ['template' => '/FormElementDecorators/default/image']],
+                ],
+                FDElementNS\InlineFieldset::class => [
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
+                        'template' => '/FormElementDecorators/default/list-label'
+                    ]],
                 ],
             ],
         ]
