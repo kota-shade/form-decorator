@@ -27,15 +27,12 @@ if (isset($options['markupError'])) {
 }
 
 $elementOptions = $element->getOptions();
-if (!isset($elementOptions['wrapperAttributes']['class'])) {
-    $elementOptions['wrapperAttributes']['class'] = 'col-sm-8';
-}
+
 $elementOptions['wrapperAttributes']['class'] = sprintf("element-wrapper element-wrapper-type-%s element-wrapper-id-%s %s",
     $element->getAttribute('type'),
     $id,
-    $elementOptions['wrapperAttributes']['class']
+    (isset($elementOptions['wrapperAttributes']['class']) ? $elementOptions['wrapperAttributes']['class'] : '')
 );
-//$elementOptions['wrapperAttributes']['class'] = 'wrap-element-body ' . $elementOptions['wrapperAttributes']['class'];
 $ctrlWrapAtt = [];
 foreach($elementOptions['wrapperAttributes'] as $k => &$v) {
     $ctrlWrapAtt[] = "$k='$v'";

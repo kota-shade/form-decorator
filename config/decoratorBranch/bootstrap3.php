@@ -16,7 +16,7 @@ return [
             'bootstrap3' => [
                 ZFormNS\Form::class => [
                     'list' => [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list'] ],
-                    'form-wrap' =>[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/form-wrap'] ],
+                    'form-wrap' =>[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/form-wrap'] ],
                 ],
                 ElementNS\Collection::class => [
                     ['name' => HelperNS\FormElementView::class, 'options' => [
@@ -31,14 +31,14 @@ return [
                 ElementNS\Text::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row'] ],
                 ],
-                ElementNS\TextArea::class => [
+                ElementNS\Textarea::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row'] ],
                 ],
                 ElementNS\Select::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row'] ],
                 ],
                 ElementNS\Radio::class => [
-                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row'] ],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row_radio'] ],
                 ],
                 ElementNS\Password::class => [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row'] ],
@@ -74,7 +74,9 @@ return [
                 ],
                 FDElementNS\InlineFieldset::class => [
                     //[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list']],
-                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap/row']],
+                    [ 'name' => HelperNS\FormElementView::class, 'options' => [
+                        'template' => '/FormElementDecorators/bootstrap3/row',
+                    ]],
                 ],
             ],
         ],

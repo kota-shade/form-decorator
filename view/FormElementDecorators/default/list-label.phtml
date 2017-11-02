@@ -29,8 +29,10 @@ echo '<div '. implode(' ', $ctrlWrapAtt) .'>';
 
 /** @var \Zend\Form\Element $element */
 foreach ($fieldset as $element) {
-    if ($element->getLabel()) {
-        echo $this->formLabel($element);
+    if ($element instanceof \Zend\Form\Element\Button ==false) {
+        if ($element->getLabel()) {
+            echo $this->formLabel($element);
+        }
     }
     echo $this->formBranchRender($element, $branch, $mode) . "\n";
 }

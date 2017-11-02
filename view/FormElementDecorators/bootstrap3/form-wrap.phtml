@@ -1,0 +1,47 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 13.02.17
+ * Time: 23:38
+ */
+use \Zend\Form\FieldsetInterface;
+/** @var \Zend\Form\Form $form */
+$form = $this->get('formElement');
+$content = $this->get('content');
+$baseFieldset = $form->getBaseFieldset();
+$label = $baseFieldset->getLabel();
+$errorMessage = $baseFieldset->getAttribute('error-message');
+
+$classAtt = 'form-horizontal ' . $form->getAttribute('class');
+$form->setAttribute('class', $classAtt);
+echo $this->form()->openTag($form);
+
+$elementOptions = $form->getOptions();
+$elementOptions['wrapperAttributes']['class'] = sprintf("wrap-form %s",
+    (isset($elementOptions['wrapperAttributes']['class']) ? $elementOptions['wrapperAttributes']['class'] : '')
+);
+$ctrlWrapAtt = [];
+foreach($elementOptions['wrapperAttributes'] as $k => &$v) {
+    $ctrlWrapAtt[] = "$k='$v'";
+}
+
+?>
+<div <?= implode(' ', $ctrlWrapAtt) ?> >
+    <?php
+    if ($label) {
+        echo "<div class='panel-heading'>" . $this->formLabel($baseFieldset) . "</div>";
+    }
+    ?>
+    <!-- div class="panel-body" -->
+
+        <div class="form-group">
+            <?php if($errorMessage): ?>
+            <div class="text-danger form-panel-error"><?php echo $errorMessage; ?></div>
+            <?php endif; ?>
+            <?php echo $content; ?>
+        </div>
+    <!-- /div -->
+</div>
+<?php
+echo $this->form()->closeTag();

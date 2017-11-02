@@ -28,11 +28,19 @@ if (($value = $element->getValue()) != null) {
     $element->setAttribute('src', $value);
 }
 
-
-//echo '<div class="element-wrapper">';
-printf('<div class="element-wrapper element-wrapper-type-%s element-wrapper-id-%s">',
-    $element->getAttribute('type'), $id
+$elementOptions = $element->getOptions();
+$elementOptions['wrapperAttributes']['class'] = sprintf("element-wrapper element-wrapper-type-%s element-wrapper-id-%s %s",
+    $element->getAttribute('type'),
+    $id,
+    (isset($elementOptions['wrapperAttributes']['class']) ? $elementOptions['wrapperAttributes']['class'] : '')
 );
+$ctrlWrapAtt = [];
+foreach($elementOptions['wrapperAttributes'] as $k => &$v) {
+    $ctrlWrapAtt[] = "$k='$v'";
+}
+
+echo '<div '. implode(' ', $ctrlWrapAtt) .'>';
+
 if ($currentMode == 'view') {
     echo '<img ';
     foreach($element->getAttributes() as $k=>&$v) {

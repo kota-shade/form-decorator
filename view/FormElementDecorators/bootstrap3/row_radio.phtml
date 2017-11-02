@@ -7,17 +7,11 @@ $labelAttributes = $element->getLabelAttributes();
 $labelElement = new \Zend\Form\Element();
 if (!isset($labelAttributes['class'])) {
     $labelAttributes['class'] = 'control-label col-sm-4 ';
-    //$element->setLabelAttributes($labelAttributes);
 }
 $labelElement->setLabelAttributes($labelAttributes)
     ->setLabel($element->getLabel())
     ->setAttributes($element->getAttributes());
 ;
-
-if(($classAtt = $element->getAttribute('class')) == null) {
-    $classAtt = 'form-control ' . $classAtt;
-    $element->setAttribute('class', $classAtt);
-}
 
 $options = $this->get('options');
 $branch = 'default';
@@ -35,9 +29,19 @@ foreach($elementOptions['wrapperAttributes'] as $k => &$v) {
     $ctrlWrapAtt[] = "$k='$v'";
 }
 
-$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+//инлаин верстка радиобатонов
+$labelAttributes = $element->getLabelAttributes();
+if (isset($labelAttributes['class'])) {
+    $labelAttributes['class'] .= ' radio-inline';
+} else {
+    $labelAttributes['class'] = 'radio-inline';
+}
+$element->setLabelAttributes($labelAttributes);
+
 $markup = $this->formBranchRender($element, $branch, $this->get('mode'));
 $type = $element->getAttribute('type');
+
+
 ?>
 <div class="form-group wrap-element-row wrap-element-row-<?php echo $type; ?>">
     <?= ($labelElement->getLabel() ? $this->formLabel($labelElement) : '') ?>
