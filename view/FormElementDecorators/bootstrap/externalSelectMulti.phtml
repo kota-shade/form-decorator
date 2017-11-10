@@ -55,7 +55,7 @@ if (isset($options['markupError'])) {
 }
 
 $labelAttributes = $element->getLabelAttributes();
-$labelAttributes['class'] = 'control-label col-sm-4 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$labelAttributes['class'] = 'control-label col-sm-3 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
 $element->setLabelAttributes($labelAttributes);
 $label = ($element->getLabel()) ? $this->formLabel($element) : '';
 
@@ -93,7 +93,7 @@ if ($currentMode == 'view') {
             $count++;
         }
     }
-    echo $label . '<div class="col-sm-8 wrap-element-body"><span class="form-control">' . $text . '</span></div>';
+    echo $label . '<div class="col-sm-9 wrap-element-body"><span class="form-control">' . $text . '</span></div>';
 } else {
     $iconClass = 'glyphicon glyphicon-search';
     if (($optIconClass = $element->getOption('icon-class')) != null) {
@@ -115,6 +115,6 @@ if ($currentMode == 'view') {
         $iconClass,
         $errorMsg
     );
-    echo $label . '<div class="col-sm-8 wrap-element-body">' . $markup . '</div>';
+    echo $label . '<div class="col-sm-9 wrap-element-body">' . $markup . '</div>';
 }
 echo '</div>';

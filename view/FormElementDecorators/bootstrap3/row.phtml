@@ -6,7 +6,7 @@ $element = $this->get('formElement');
 $labelAttributes = $element->getLabelAttributes();
 $labelElement = new \Zend\Form\Element();
 if (!isset($labelAttributes['class'])) {
-    $labelAttributes['class'] = 'control-label col-sm-4 ';
+    $labelAttributes['class'] = 'control-label col-sm-3 ';
     //$element->setLabelAttributes($labelAttributes);
 }
 $labelElement->setLabelAttributes($labelAttributes)
@@ -27,7 +27,7 @@ if (isset($options['branch']) == true) {
 
 $elementOptions = $element->getOptions();
 if (!isset($elementOptions['wrapperAttributes']['class'])) {
-    $elementOptions['wrapperAttributes']['class'] = 'col-sm-8';
+    $elementOptions['wrapperAttributes']['class'] = 'col-sm-9';
 }
 $elementOptions['wrapperAttributes']['class'] = 'wrap-element-body ' . $elementOptions['wrapperAttributes']['class'];
 $ctrlWrapAtt = [];
