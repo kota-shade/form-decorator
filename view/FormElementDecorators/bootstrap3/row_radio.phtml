@@ -2,30 +2,33 @@
 use Zend\Form\Element;
 /** @var \Zend\Form\Element $element */
 $element = $this->get('formElement');
+$options = $this->get('options');
+$defaultLabelClass = array_key_exists('label_class', $options) ? $options['label_class'] : 'control-label col-sm-4 ';
+$defaultBodyClass = array_key_exists('body_class', $options) ? $options['body_class'] : 'col-sm-8';
 
 $labelAttributes = $element->getLabelAttributes();
 $labelElement = new \Zend\Form\Element();
 if (!isset($labelAttributes['class'])) {
-    $labelAttributes['class'] = 'control-label col-sm-4 ';
+    $labelAttributes['class'] = $defaultLabelClass;
 }
 $labelElement->setLabelAttributes($labelAttributes)
     ->setLabel($element->getLabel())
     ->setAttributes($element->getAttributes());
 ;
 
-$options = $this->get('options');
+
 $branch = 'default';
 if (isset($options['branch']) == true) {
     $branch = $options['branch'];
 }
 
 $elementOptions = $element->getOptions();
-if (!isset($elementOptions['wrapperAttributes']['class'])) {
-    $elementOptions['wrapperAttributes']['class'] = 'col-sm-8';
+if (!isset($elementOptions['bodyAttributes']['class'])) {
+    $elementOptions['bodyAttributes']['class'] = $defaultBodyClass;
 }
-$elementOptions['wrapperAttributes']['class'] = 'wrap-element-body ' . $elementOptions['wrapperAttributes']['class'];
+$elementOptions['bodyAttributes']['class'] = 'wrap-element-body ' . $elementOptions['bodyAttributes']['class'];
 $ctrlWrapAtt = [];
-foreach($elementOptions['wrapperAttributes'] as $k => &$v) {
+foreach($elementOptions['bodyAttributes'] as $k => &$v) {
     $ctrlWrapAtt[] = "$k='$v'";
 }
 
