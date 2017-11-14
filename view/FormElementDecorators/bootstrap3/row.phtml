@@ -3,8 +3,8 @@ use Zend\Form\Element;
 /** @var \Zend\Form\Element $element */
 $element = $this->get('formElement');
 $options = $this->get('options');
-$defaultLabelClass = array_key_exists('label_class', $options) ? $options['label_class'] : 'control-label col-sm-4 ';
-$defaultBodyClass = array_key_exists('body_class', $options) ? $options['body_class'] : 'col-sm-8';
+$defaultLabelClass = array_key_exists('label_class', $options) ? $options['label_class'] : 'control-label col-sm-3 ';
+$defaultBodyClass = array_key_exists('body_class', $options) ? $options['body_class'] : 'col-sm-6 ';
 
 $labelAttributes = $element->getLabelAttributes();
 $labelElement = new \Zend\Form\Element();

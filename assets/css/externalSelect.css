@@ -47,3 +47,6 @@ div.element-wrapper-ext-select-multi .tokenfield {
     min-height: 24px;
 }
 
+.wrap-form input{
+    width: 100%;
+}
