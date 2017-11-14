@@ -11,7 +11,17 @@
  * @param \Zend\Form\Element $element
  * @return array
  */
-$prepareElementData = function($element) {
+
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$gridClasses = $element->getOption('gridClasses');
+
+// Формирование размеров по сетке
+$labelClass = (!empty($gridClasses['label_class'])) ? $gridClasses['label_class'] : 'col-sm-3';
+$bodyClass = (!empty($gridClasses['body_class'])) ? $gridClasses['body_class'] : 'col-sm-9';
+
+
+$prepareElementData = function ($element) {
     $value = $element->getValue();
     $valueList = [];
     $tokenFieldData = [];
@@ -34,7 +44,7 @@ $prepareElementData = function($element) {
     $element->setAttribute('data-tokens', json_encode($tokenFieldData));
     $element->setAttribute('data-need-tokenfield', true);
     $element->setAttribute('data-separator', $separator);
-    $element->setAttribute('class', $element->getAttribute('class').' ext-select-multi form-control');
+    $element->setAttribute('class', $element->getAttribute('class') . ' ext-select-multi form-control');
 };
 
 $options = $this->get('options');
@@ -44,10 +54,7 @@ if (array_key_exists('branch', $options)) {
     $branch = $this->get('branch');
 }
 $mode = $this->get('mode');
-/** @var \Zend\Form\Element $element */
-$element = $this->get('formElement');
 $id = $element->getAttribute('id');
-
 $errorMsg = $errClass = '';
 if (isset($options['markupError'])) {
     $errorMsg = $options['markupError'];
@@ -55,7 +62,7 @@ if (isset($options['markupError'])) {
 }
 
 $labelAttributes = $element->getLabelAttributes();
-$labelAttributes['class'] = 'control-label col-sm-3 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$labelAttributes['class'] = $labelClass . ' control-label ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
 $element->setLabelAttributes($labelAttributes);
 $label = ($element->getLabel()) ? $this->formLabel($element) : '';
 
@@ -79,10 +86,10 @@ if ($currentMode == 'view') {
             }
             $count++;
         }
-    } elseif(is_string($value)){
+    } elseif (is_string($value)) {
         $value = explode('@@', $value);
         $newValue = [];
-        foreach($value as $val) {
+        foreach ($value as $val) {
             $newValue[] = json_decode($val, true);
         }
         foreach ($newValue as $val) {
@@ -93,20 +100,21 @@ if ($currentMode == 'view') {
             $count++;
         }
     }
-    echo $label . '<div class="col-sm-9 wrap-element-body"><span class="form-control">' . $text . '</span></div>';
+    echo $label . '<div class="' . $bodyClass . ' wrap-element-body"><span class="form-control">' . $text . '</span></div>';
 } else {
     $iconClass = 'glyphicon glyphicon-search';
     if (($optIconClass = $element->getOption('icon-class')) != null) {
         $iconClass = $optIconClass;
     }
 
-    if (($clickHandler=$element->getOption('clickHandler')) == null) {
+    if (($clickHandler = $element->getOption('clickHandler')) == null) {
         $clickHandler = '';
     }
 
-    $markup = sprintf('<div id="ext-select-multi-%s" class="%s">'.
-        '<div class="input-group">%s'.
-        '<span class="input-group-addon ext-select-search"  data-clickHandler="%s"><span class="cursor-pointer %s"></span></span>'.
+    $markup = sprintf(
+        '<div id="ext-select-multi-%s" class="%s">' .
+        '<div class="input-group">%s' .
+        '<span class="input-group-addon ext-select-search"  data-clickHandler="%s"><span class="cursor-pointer %s"></span></span>' .
         '</div></div>%s',
         $id,
         $errClass,
@@ -115,6 +123,6 @@ if ($currentMode == 'view') {
         $iconClass,
         $errorMsg
     );
-    echo $label . '<div class="col-sm-9 wrap-element-body">' . $markup . '</div>';
+    echo $label . '<div class="' . $bodyClass . ' wrap-element-body">' . $markup . '</div>';
 }
 echo '</div>';
