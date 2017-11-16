@@ -111,7 +111,7 @@ return [
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [
                         'template' => '/FormElementDecorators/bootstrap3/row',
                         'label_class' => 'control-label col-sm-3 ',
-                        'body_class' => 'col-sm-9',
+                        'body_class' => 'col-sm-6',
                     ]],
                 ],
             ],
