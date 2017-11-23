@@ -95,6 +95,15 @@ ExternalSelectList.ExternalSelectDialogMulti = function (element) {
             }
         },
         {
+            'data-button-key': 'all',
+            text: 'Выбрать всё',
+            click: function(dialogElement) {
+                me.setValue({'-1': 'Выбрано всё'});
+                me.actionSelect();
+                return true;
+            }
+        },
+        {
             'data-button-key': 'Cancel',
             text: 'Закрыть'
         }
