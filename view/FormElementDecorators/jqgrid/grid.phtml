@@ -15,6 +15,12 @@ if (array_key_exists('pager', $opts) && $opts['pager'] == true) {
     $pagerId = 'undefined';
 }
 
+if(array_key_exists('multiselect', $opts) && $opts['multiselect'] == true){
+    $multiParams = '';
+    // @fixme переметить сюда js
+}
+
+
 ?>
 <table id="<?php echo $gridName;?>"></table>
 <script>
@@ -39,6 +45,41 @@ $(document).ready(function() {
          }
      }
     ?>
+
+    $(gridSelector).on({
+        'jqGridSelectRow': function (e, rowid, isSelected) {
+            var index = $.inArray(rowid, JqGridIdOfSelectedRows);
+            if (!isSelected) {
+                JqGridIdOfSelectedRows.splice(index, 1); // Удаляем id из списка
+            } else if (isSelected) {
+                var value = $(gridSelector).getCell(rowid, 'value');
+                JqGridIdOfSelectedRows[rowid] = value ;
+            }
+        },
+
+        'jqGridLoadComplete': function () {// При пререключении страниц
+            var $this = $(this), i, count;
+            for(key in JqGridIdOfSelectedRows){
+                $this.jqGrid('setSelection', key, false);
+            }
+        },
+
+        'jqGridSelectAll': function (e, rowIds, isSelected) {
+            var i, count, id;
+            for (i = 0, count = rowIds.length; i < count; i++) {
+                id = rowIds[i];
+
+                var index = $.inArray(id, JqGridIdOfSelectedRows);
+                if (!isSelected) {
+                    JqGridIdOfSelectedRows.splice(index, 1); // Удаляем id из списка
+                } else if (isSelected) {
+                    var value = $(gridSelector).getCell(id, 'value');
+                    JqGridIdOfSelectedRows[id] = value ;
+                }
+            }
+        },
+
+    });
 
 //    gridObj.jqGrid('navButtonAdd',pagerSelector, {
 //        caption: "Columns",
