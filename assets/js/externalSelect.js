@@ -83,13 +83,8 @@ ExternalSelectList.ExternalSelectDialogMulti = function (element) {
             'data-button-key': 'OK',
             text: 'Выбрать',
             click: function(dialogElement) {
-                var data = {};
-
-                $(dialogElement).find('input:checkbox:checked').each(function(){
-                    var value = $(this).val();
-                    data[value] = $(this).attr('data-value');
-                });
-                me.setValue(data);
+                // console.log('сохранем токены ', JqGridIdOfSelectedRows);
+                me.setValue(JqGridIdOfSelectedRows);
                 me.actionSelect();
                 return true;
             }
@@ -213,6 +208,18 @@ $(document).ready(function() {
     };
 
     $(document).on('click', '.ext-select-search', function(){
+
+        /**
+         * Сохраняем выбранные значения для чекбоксов
+         */
+        window.JqGridIdOfSelectedRows = []; // массив хранит выбранные id чекбоксов, для сохранения при переключении страниц
+        var tokens = $(this.closest('div')).find('.tokenfield .token');
+        $(tokens).each(function() {
+            var dataToken = $(this).data('value');
+            JqGridIdOfSelectedRows[dataToken.value] = dataToken.label;
+        });
+
+        // console.log('выбранное ранее токены',JqGridIdOfSelectedRows);
         doSelectHandler(this);
     });
 });
