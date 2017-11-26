@@ -83,7 +83,14 @@ ExternalSelectList.ExternalSelectDialogMulti = function (element) {
             'data-button-key': 'OK',
             text: 'Выбрать',
             click: function(dialogElement) {
-                // console.log('сохранем токены ', JqGridIdOfSelectedRows);
+                console.log('сохранем токены ', JqGridIdOfSelectedRows);
+
+                //Очищаем поле токенов
+                 $($(element).closest('div')).find('.tokenfield .token .close').each(function () {
+                        $(this).trigger('click');
+                 });
+
+
                 me.setValue(JqGridIdOfSelectedRows);
                 me.actionSelect();
                 return true;
@@ -213,6 +220,9 @@ $(document).ready(function() {
          * Сохраняем выбранные значения для чекбоксов
          */
         window.JqGridIdOfSelectedRows = []; // массив хранит выбранные id чекбоксов, для сохранения при переключении страниц
+
+        // console.log('Открываем ', JqGridIdOfSelectedRows);
+
         var tokens = $(this.closest('div')).find('.tokenfield .token');
         $(tokens).each(function() {
             var dataToken = $(this).data('value');

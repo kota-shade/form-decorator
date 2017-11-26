@@ -15,9 +15,44 @@ if (array_key_exists('pager', $opts) && $opts['pager'] == true) {
     $pagerId = 'undefined';
 }
 
+$multiParams = '';
 if(array_key_exists('multiselect', $opts) && $opts['multiselect'] == true){
-    $multiParams = '';
-    // @fixme переметить сюда js
+    $multiParams = <<<EOD
+    <!--<script>-->
+    $(gridSelector).on({
+        'jqGridSelectRow': function (e, rowid, isSelected) {
+            if (!isSelected) {
+//                console.log('id удаляющегося', rowid)
+                JqGridIdOfSelectedRows.splice(rowid, 1); // Удаляем id из списка.
+            } else if (isSelected) {
+                var value = $(gridSelector).getCell(rowid, 'value');
+                JqGridIdOfSelectedRows[rowid] = value ;
+            }
+        },
+
+        'jqGridLoadComplete': function () {// При пререключении страниц
+            var i, count;
+            for(key in JqGridIdOfSelectedRows){
+                $(this).jqGrid('setSelection', key, false);
+            }
+        },
+
+        'jqGridSelectAll': function (e, rowIds, isSelected) {
+            var i, count, id;
+            for (i = 0, count = rowIds.length; i < count; i++) {
+                id = rowIds[i];
+                if (!isSelected) {
+                    JqGridIdOfSelectedRows.splice(id, 1); // Удаляем id из списка
+                } else if (isSelected) {
+                    var value = $(gridSelector).getCell(id, 'value');
+                    JqGridIdOfSelectedRows[id] = value ;
+                }
+            }
+        },
+
+    });
+EOD;
+
 }
 
 
@@ -45,41 +80,7 @@ $(document).ready(function() {
          }
      }
     ?>
-
-    $(gridSelector).on({
-        'jqGridSelectRow': function (e, rowid, isSelected) {
-            var index = $.inArray(rowid, JqGridIdOfSelectedRows);
-            if (!isSelected) {
-                JqGridIdOfSelectedRows.splice(index, 1); // Удаляем id из списка
-            } else if (isSelected) {
-                var value = $(gridSelector).getCell(rowid, 'value');
-                JqGridIdOfSelectedRows[rowid] = value ;
-            }
-        },
-
-        'jqGridLoadComplete': function () {// При пререключении страниц
-            var $this = $(this), i, count;
-            for(key in JqGridIdOfSelectedRows){
-                $this.jqGrid('setSelection', key, false);
-            }
-        },
-
-        'jqGridSelectAll': function (e, rowIds, isSelected) {
-            var i, count, id;
-            for (i = 0, count = rowIds.length; i < count; i++) {
-                id = rowIds[i];
-
-                var index = $.inArray(id, JqGridIdOfSelectedRows);
-                if (!isSelected) {
-                    JqGridIdOfSelectedRows.splice(index, 1); // Удаляем id из списка
-                } else if (isSelected) {
-                    var value = $(gridSelector).getCell(id, 'value');
-                    JqGridIdOfSelectedRows[id] = value ;
-                }
-            }
-        },
-
-    });
+    <?php echo $multiParams; ?>
 
 //    gridObj.jqGrid('navButtonAdd',pagerSelector, {
 //        caption: "Columns",
