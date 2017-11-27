@@ -83,7 +83,7 @@ ExternalSelectList.ExternalSelectDialogMulti = function (element) {
             'data-button-key': 'OK',
             text: 'Выбрать',
             click: function(dialogElement) {
-                console.log('сохранем токены ', JqGridIdOfSelectedRows);
+                // console.log('сохранем токены ', JqGridIdOfSelectedRows);
 
                 //Очищаем поле токенов
                  $($(element).closest('div')).find('.tokenfield .token .close').each(function () {
