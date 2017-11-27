@@ -213,7 +213,7 @@ $(document).ready(function() {
          * Сохраняем выбранные значения для чекбоксов
          */
         window.JqGridIdOfSelectedRows = []; // массив хранит выбранные id чекбоксов, для сохранения при переключении страниц
-        var tokens = $(this.closest('div')).find('.tokenfield .token');
+        var tokens = $($(this).closest('div')).find('.tokenfield .token');
         $(tokens).each(function() {
             var dataToken = $(this).data('value');
             JqGridIdOfSelectedRows[dataToken.value] = dataToken.label;
