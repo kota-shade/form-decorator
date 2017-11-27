@@ -23,7 +23,7 @@ if(array_key_exists('multiselect', $opts) && $opts['multiselect'] == true){
         'jqGridSelectRow': function (e, rowid, isSelected) {
             if (!isSelected) {
 //                console.log('id удаляющегося', rowid)
-                JqGridIdOfSelectedRows.splice(rowid, 1); // Удаляем id из списка.
+                delete JqGridIdOfSelectedRows[rowid];// Удаляем id из списка.
             } else if (isSelected) {
                 var value = $(gridSelector).getCell(rowid, 'value');
                 JqGridIdOfSelectedRows[rowid] = value ;
@@ -42,7 +42,7 @@ if(array_key_exists('multiselect', $opts) && $opts['multiselect'] == true){
             for (i = 0, count = rowIds.length; i < count; i++) {
                 id = rowIds[i];
                 if (!isSelected) {
-                    JqGridIdOfSelectedRows.splice(id, 1); // Удаляем id из списка
+                    delete JqGridIdOfSelectedRows[rowid];// Удаляем id из списка.
                 } else if (isSelected) {
                     var value = $(gridSelector).getCell(id, 'value');
                     JqGridIdOfSelectedRows[id] = value ;
