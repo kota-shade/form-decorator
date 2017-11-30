@@ -21,7 +21,7 @@ var commonDialogAjax = commonDialogAjax || function (form, buttons, options, cal
             autoOpen: false,
             dialogClassSelector: 'dialog' + _self.uniqId
         }, options),
-        buttons: Array.concat([], buttons),
+        buttons: [].concat(buttons),
         block: {
             content: '<div class="overlay-block" style="text-align: center;">' +
             '<img src="/img/loaders/loader_bw.gif" /></div>',
