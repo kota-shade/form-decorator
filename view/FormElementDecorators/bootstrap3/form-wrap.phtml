@@ -10,7 +10,9 @@ use \Zend\Form\FieldsetInterface;
 $form = $this->get('formElement');
 $content = $this->get('content');
 $baseFieldset = $form->getBaseFieldset();
-$label = $baseFieldset->getLabel();
+$label = $form->getLabel();
+$labelClass = $form->getLabelAttributes()['class'];
+$labelClass = !empty($labelClass) ? $labelClass : 'panel-heading';
 $errorMessage = $baseFieldset->getAttribute('error-message');
 
 $classAtt = 'form-horizontal ' . $form->getAttribute('class');
@@ -30,7 +32,7 @@ foreach($elementOptions['wrapperAttributes'] as $k => &$v) {
 <div <?= implode(' ', $ctrlWrapAtt) ?> >
     <?php
     if ($label) {
-        echo "<div class='panel-heading'>" . $this->formLabel($baseFieldset) . "</div>";
+        echo "<div class='" . $labelClass . "'>" . $label . "</div>";
     }
     ?>
     <!-- div class="panel-body" -->

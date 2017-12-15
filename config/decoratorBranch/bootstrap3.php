@@ -19,17 +19,17 @@ return [
                     'form-wrap' =>[ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/form-wrap'] ],
                 ],
                 ElementNS\Collection::class => [
-                    ['name' => HelperNS\FormElementView::class, 'options' => [
+                    'list' => ['name' => HelperNS\FormElementView::class, 'options' => [
                         'template' => '/FormElementDecorators/default/list',
                         'branch' => 'bootstrap_row'
                     ]],
                 ],
                 ZFormNS\Fieldset::class => [
-                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list']],
+                    'list' => [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/default/list']],
                     [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/fieldset']],
                 ],
                 ElementNS\Text::class => [
-                    [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row',
+                    'row' => [ 'name' => HelperNS\FormElementView::class, 'options' => [ 'template' => '/FormElementDecorators/bootstrap3/row',
                         'label_class' => 'control-label col-sm-3 ',
                         'body_class' => 'col-sm-9',
                         ]
