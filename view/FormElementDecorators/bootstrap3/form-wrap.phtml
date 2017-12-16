@@ -11,8 +11,8 @@ $form = $this->get('formElement');
 $content = $this->get('content');
 $baseFieldset = $form->getBaseFieldset();
 $label = $form->getLabel();
-$labelClass = $form->getLabelAttributes()['class'];
-$labelClass = !empty($labelClass) ? $labelClass : 'panel-heading';
+$labelClass = $form->getLabelAttributes();
+$labelClass = !empty($labelClass['class']) ? $labelClass['class'] : 'panel-heading';
 $errorMessage = $baseFieldset->getAttribute('error-message');
 
 $classAtt = 'form-horizontal ' . $form->getAttribute('class');
