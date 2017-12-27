@@ -47,6 +47,9 @@ div.element-wrapper-ext-select-multi .tokenfield {
     min-height: 24px;
 }
 
-.wrap-form input{
-    width: 100%;
-}
+/* необходимо задать более точный селектор, т.к. этот портит верстку в inline-fieldset
+возможно для каждого вида элемента отдельно :(
+*/
+/*.wrap-form input{*/
+    /*width: 100%;*/
+/*}*/
